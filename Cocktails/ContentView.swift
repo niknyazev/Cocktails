@@ -7,20 +7,57 @@
 
 import SwiftUI
 
+struct Cocktail: Identifiable {
+    let id = UUID()
+    let name: String
+    let description: String
+    let imageName = "circle"
+}
+
 struct ContentView: View {
-    
-    struct Cocktail: Identifiable {
-        let id = UUID()
-        let name: String
-        let description: String
-        let imageName = "circle"
-    }
-    
+        
     private let cocktails = [
         Cocktail(name: "vodka", description: "Cool drink"),
         Cocktail(name: "Jin", description: "Not bad, but too expesive"),
         Cocktail(name: "Tequila", description: "Another drink")
     ]
+    
+    var body: some View {
+        TabView {
+            RandomCocktail()
+                .tabItem {
+                    Image(systemName: "circle")
+                    Text("Random")
+                }
+            CocktailsList(cocktails: cocktails)
+                .tabItem {
+                    Image(systemName: "circle")
+                    Text("Cocktails")
+                }
+            FavouriteCocktails()
+                .tabItem {
+                    Image(systemName: "circle")
+                    Text("Favourite")
+                }
+        }
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}
+
+struct RandomCocktail: View {
+    var body: some View {
+        Text("Current cocktail")
+    }
+}
+
+struct CocktailsList: View {
+    
+    let cocktails: [Cocktail]
     
     var body: some View {
         List(cocktails) { cocktail in
@@ -30,7 +67,7 @@ struct ContentView: View {
                         .font(.title)
                     Text(cocktail.description)
                 }
-                    
+                
                 Spacer()
                 Image(systemName: cocktail.imageName)
             }
@@ -38,8 +75,8 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+struct FavouriteCocktails: View {
+    var body: some View {
+        Text("Favourite")
     }
 }
