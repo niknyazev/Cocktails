@@ -8,9 +8,33 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    struct Cocktail: Identifiable {
+        let id = UUID()
+        let name: String
+        let description: String
+        let imageName = "circle"
+    }
+    
+    private let cocktails = [
+        Cocktail(name: "vodka", description: "Cool drink"),
+        Cocktail(name: "Jin", description: "Not bad, but too expesive"),
+        Cocktail(name: "Tequila", description: "Another drink")
+    ]
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        List(cocktails) { cocktail in
+            HStack {
+                VStack {
+                    Text(cocktail.name)
+                        .font(.title)
+                    Text(cocktail.description)
+                }
+                    
+                Spacer()
+                Image(systemName: cocktail.imageName)
+            }
+        }
     }
 }
 
