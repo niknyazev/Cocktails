@@ -51,7 +51,14 @@ struct ContentView_Previews: PreviewProvider {
 
 struct RandomCocktail: View {
     var body: some View {
-        Text("Current cocktail")
+        VStack {
+            Text("Current cocktail")
+            Image("rum_DEMO")
+                .resizable()
+                .frame(width: 200, height: 200, alignment: .center)
+                .cornerRadius(100)
+            Text("Next")
+        }
     }
 }
 
