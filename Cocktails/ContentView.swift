@@ -57,7 +57,10 @@ struct RandomCocktail: View {
                 .resizable()
                 .frame(width: 200, height: 200, alignment: .center)
                 .cornerRadius(100)
-            Text("Next")
+            Button("Next") {
+                print("hello world")
+            }
+            .font(.title)
         }
     }
 }
