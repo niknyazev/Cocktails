@@ -11,6 +11,8 @@
 		011942D12819B05200489771 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011942D02819B05200489771 /* ContentView.swift */; };
 		011942D32819B05400489771 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 011942D22819B05400489771 /* Assets.xcassets */; };
 		011942D62819B05400489771 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 011942D52819B05400489771 /* Preview Assets.xcassets */; };
+		011942DD281C58E800489771 /* Cocktail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011942DC281C58E800489771 /* Cocktail.swift */; };
+		011942DF281C5BE400489771 /* CocktailsDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011942DE281C5BE400489771 /* CocktailsDataFetcher.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,8 @@
 		011942D02819B05200489771 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		011942D22819B05400489771 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		011942D52819B05400489771 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		011942DC281C58E800489771 /* Cocktail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cocktail.swift; sourceTree = "<group>"; };
+		011942DE281C5BE400489771 /* CocktailsDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailsDataFetcher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +57,8 @@
 			children = (
 				011942CE2819B05200489771 /* CocktailsApp.swift */,
 				011942D02819B05200489771 /* ContentView.swift */,
+				011942DC281C58E800489771 /* Cocktail.swift */,
+				011942DE281C5BE400489771 /* CocktailsDataFetcher.swift */,
 				011942D22819B05400489771 /* Assets.xcassets */,
 				011942D42819B05400489771 /* Preview Content */,
 			);
@@ -138,7 +144,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				011942D12819B05200489771 /* ContentView.swift in Sources */,
+				011942DF281C5BE400489771 /* CocktailsDataFetcher.swift in Sources */,
 				011942CF2819B05200489771 /* CocktailsApp.swift in Sources */,
+				011942DD281C58E800489771 /* Cocktail.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

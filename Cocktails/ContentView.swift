@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Cocktail: Identifiable {
+struct Cocktail_DEMO_REMOVE: Identifiable {
     let id = UUID()
     let name: String
     let description: String
@@ -17,9 +17,9 @@ struct Cocktail: Identifiable {
 struct ContentView: View {
         
     private let cocktails = [
-        Cocktail(name: "vodka", description: "Cool drink"),
-        Cocktail(name: "Jin", description: "Not bad, but too expesive"),
-        Cocktail(name: "Tequila", description: "Another drink")
+        Cocktail_DEMO_REMOVE(name: "vodka", description: "Cool drink"),
+        Cocktail_DEMO_REMOVE(name: "Jin", description: "Not bad, but too expesive"),
+        Cocktail_DEMO_REMOVE(name: "Tequila", description: "Another drink")
     ]
     
     var body: some View {
@@ -67,7 +67,7 @@ struct RandomCocktail: View {
 
 struct CocktailsList: View {
     
-    let cocktails: [Cocktail]
+    let cocktails: [Cocktail_DEMO_REMOVE]
     
     var body: some View {
         List(cocktails) { cocktail in
