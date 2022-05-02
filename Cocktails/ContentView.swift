@@ -51,18 +51,24 @@ struct ContentView_Previews: PreviewProvider {
 
 struct RandomCocktail: View {
     
+    @State private var cocktailName = ""
     private var cocktailsFetcher = CocktailsDataFetcher.shared
     
     var body: some View {
         VStack {
-            Text("Current cocktail")
+            Text(cocktailName)
             Image("rum_DEMO")
                 .resizable()
                 .frame(width: 200, height: 200, alignment: .center)
                 .cornerRadius(100)
             Button("Next") {
                 cocktailsFetcher.request(query: "vodka") { result in
-                    print("Hello")
+                        switch result {
+                        case .success(let cocktail):
+                            self.cocktailName = cocktail.drinks.first?.strDrink ?? ""
+                        default:
+                            print("Its error")
+                        }
                 }
             }
             .font(.title)

@@ -60,18 +60,16 @@ final class CocktailsDataFetcher {
     
     // MARK: - Private methods
     
+    // TODO: need to remove
     private func queryHeaders() -> [String: String] {
         var headers: [String: String] = [:]
-        headers["Authorization"] = "Client-ID EENjn6vCuLOltg5kUPDwfubrcy6dvJGOj-SeDQlXoJs"
+//        headers["Authorization"] = "Client-ID EENjn6vCuLOltg5kUPDwfubrcy6dvJGOj-SeDQlXoJs"
         return headers
     }
     
     private func queryParameters(query: String) -> [URLQueryItem] {
         let parameters = [
-            URLQueryItem(name: "query", value: query),
-            URLQueryItem(name: "page", value: String(1)),
-            URLQueryItem(name: "per_page", value: String(20)),
-            URLQueryItem(name: "per_page", value: String(20))
+            URLQueryItem(name: "s", value: query)
         ]
         return parameters
     }
@@ -79,8 +77,8 @@ final class CocktailsDataFetcher {
     private func url(queryItems: [URLQueryItem]) -> URL {
         var components = URLComponents()
         components.scheme = "https"
-        components.host = "api.unsplash.com"
-        components.path = "/search/photos"
+        components.host = "www.thecocktaildb.com"
+        components.path = "/api/json/v1/1/search.php"
         components.queryItems = queryItems
         return components.url!
     }
