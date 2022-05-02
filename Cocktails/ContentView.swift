@@ -50,6 +50,9 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 struct RandomCocktail: View {
+    
+    private var cocktailsFetcher = CocktailsDataFetcher.shared
+    
     var body: some View {
         VStack {
             Text("Current cocktail")
@@ -58,7 +61,9 @@ struct RandomCocktail: View {
                 .frame(width: 200, height: 200, alignment: .center)
                 .cornerRadius(100)
             Button("Next") {
-                print("hello world")
+                cocktailsFetcher.request(query: "vodka") { result in
+                    print("Hello")
+                }
             }
             .font(.title)
         }

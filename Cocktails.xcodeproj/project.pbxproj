@@ -57,11 +57,10 @@
 		011942CD2819B05200489771 /* Cocktails */ = {
 			isa = PBXGroup;
 			children = (
-				011942CE2819B05200489771 /* CocktailsApp.swift */,
+				011942E228206A6500489771 /* Models */,
+				011942E328206A7D00489771 /* Managers */,
 				011942D02819B05200489771 /* ContentView.swift */,
-				011942DC281C58E800489771 /* Cocktail.swift */,
-				011942DE281C5BE400489771 /* CocktailsDataFetcher.swift */,
-				011942E0281C647800489771 /* JSONWorker.swift */,
+				011942CE2819B05200489771 /* CocktailsApp.swift */,
 				011942D22819B05400489771 /* Assets.xcassets */,
 				011942D42819B05400489771 /* Preview Content */,
 			);
@@ -74,6 +73,23 @@
 				011942D52819B05400489771 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		011942E228206A6500489771 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				011942DC281C58E800489771 /* Cocktail.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		011942E328206A7D00489771 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				011942DE281C5BE400489771 /* CocktailsDataFetcher.swift */,
+				011942E0281C647800489771 /* JSONWorker.swift */,
+			);
+			name = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
