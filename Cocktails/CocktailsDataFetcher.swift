@@ -18,20 +18,39 @@ final class CocktailsDataFetcher {
     
     static let shared = CocktailsDataFetcher()
     
+    private let host = "www.thecocktaildb.com"
+    private let scheme = "https"
+    
     private init() {}
     
     // MARK: - Public methods
     
+    func randomCocktail(completion: @escaping (Result<Cocktail, NetworkError>) -> Void) {
+        
+        let url = urlRandomCocktail()
+       
+        var request = URLRequest(url: url)
+        request.httpMethod = "get"
+        
+        urlDataTask(request: request, completion: completion)
+    }
+        
     func request(query: String, completion: @escaping (Result<Cocktail, NetworkError>) -> Void) {
     
         guard let encodingQuery = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }
         
         let queryParameters = queryParameters(query: encodingQuery)
-        let url = url(queryItems: queryParameters)
+        let url = urlSearchCocktail(queryItems: queryParameters)
        
         var request = URLRequest(url: url)
-        request.allHTTPHeaderFields = queryHeaders()
         request.httpMethod = "get"
+        
+        urlDataTask(request: request, completion: completion)
+    }
+    
+    // MARK: - Private methods
+    
+    private func urlDataTask(request: URLRequest, completion: @escaping (Result<Cocktail, NetworkError>) -> Void) {
         
         URLSession.shared.dataTask(with: request) { (data, _, _) in
                             
@@ -55,16 +74,6 @@ final class CocktailsDataFetcher {
                 completion(.success(result))
             }
         }.resume()
-        
-    }
-    
-    // MARK: - Private methods
-    
-    // TODO: need to remove
-    private func queryHeaders() -> [String: String] {
-        var headers: [String: String] = [:]
-//        headers["Authorization"] = "Client-ID EENjn6vCuLOltg5kUPDwfubrcy6dvJGOj-SeDQlXoJs"
-        return headers
     }
     
     private func queryParameters(query: String) -> [URLQueryItem] {
@@ -74,14 +83,21 @@ final class CocktailsDataFetcher {
         return parameters
     }
     
-    private func url(queryItems: [URLQueryItem]) -> URL {
+    private func urlSearchCocktail(queryItems: [URLQueryItem]) -> URL {
         var components = URLComponents()
-        components.scheme = "https"
-        components.host = "www.thecocktaildb.com"
+        components.scheme = scheme
+        components.host = host
         components.path = "/api/json/v1/1/search.php"
         components.queryItems = queryItems
         return components.url!
     }
     
+    private func urlRandomCocktail() -> URL {
+        var components = URLComponents()
+        components.scheme = scheme
+        components.host = host
+        components.path = "/api/json/v1/1/random.php"
+        return components.url!
+    }
 }
 
