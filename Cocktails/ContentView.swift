@@ -62,7 +62,7 @@ struct RandomCocktail: View {
                 .frame(width: 200, height: 200, alignment: .center)
                 .cornerRadius(100)
             Button("Next") {
-                cocktailsFetcher.request(query: "vodka") { result in
+                cocktailsFetcher.randomCocktail { result in
                         switch result {
                         case .success(let cocktail):
                             self.cocktailName = cocktail.drinks.first?.strDrink ?? ""
