@@ -1,5 +1,5 @@
 //
-//  CocktailsList.swift
+//  CocktailsListView.swift
 //  Cocktails
 //
 //  Created by Николай on 04.05.2022.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CocktailsList: View {
+struct CocktailsListView: View {
     
     let cocktails: [Cocktail_DEMO_REMOVE]
     
@@ -29,6 +29,6 @@ struct CocktailsList: View {
 
 struct CocktailsList_Previews: PreviewProvider {
     static var previews: some View {
-        CocktailsList(cocktails: [])
+        CocktailsListView(cocktails: [])
     }
 }

@@ -1,5 +1,5 @@
 //
-//  RandomCocktail.swift
+//  RandomCocktailView.swift
 //  Cocktails
 //
 //  Created by Николай on 04.05.2022.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RandomCocktail: View {
+struct RandomCocktailView: View {
     
     @State private var cocktailName = ""
     private var cocktailsFetcher = CocktailsDataFetcher.shared
@@ -36,6 +36,6 @@ struct RandomCocktail: View {
 
 struct RandomCocktail_Previews: PreviewProvider {
     static var previews: some View {
-        RandomCocktail()
+        RandomCocktailView()
     }
 }

@@ -24,17 +24,17 @@ struct ContentView: View {
     
     var body: some View {
         TabView {
-            RandomCocktail()
+            RandomCocktailView()
                 .tabItem {
                     Image(systemName: "circle")
                     Text("Random")
                 }
-            CocktailsList(cocktails: cocktails)
+            CocktailsListView(cocktails: cocktails)
                 .tabItem {
                     Image(systemName: "circle")
                     Text("Cocktails")
                 }
-            FavouriteCocktails()
+            FavouriteCocktailsView()
                 .tabItem {
                     Image(systemName: "circle")
                     Text("Favourite")
