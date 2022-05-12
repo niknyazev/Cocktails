@@ -9,25 +9,17 @@ import SwiftUI
 
 struct RandomCocktailView: View {
     
-    @State private var cocktailName = ""
-    private var cocktailsFetcher = CocktailsDataFetcher.shared
+    @StateObject var viewModel = RandomCocktailViewModel()
     
     var body: some View {
         VStack {
-            Text(cocktailName)
+            Text(viewModel.name)
             Image("rum_DEMO")
                 .resizable()
                 .frame(width: 200, height: 200, alignment: .center)
                 .cornerRadius(100)
             Button("Next") {
-                cocktailsFetcher.randomCocktail { result in
-                        switch result {
-                        case .success(let cocktail):
-                            self.cocktailName = cocktail.drinks.first?.strDrink ?? ""
-                        default:
-                            print("Its error")
-                        }
-                }
+                viewModel.fetchCocktail()
             }
             .font(.title)
         }
