@@ -22,7 +22,7 @@ class RandomCocktailViewModel: ObservableObject {
             switch result {
             case .success(let cocktail):
                 self.cocktail = cocktail
-                self.name = cocktail.drinks.first?.name ?? ""
+                self.name = cocktail.name ?? ""
             default:
                 break
             }

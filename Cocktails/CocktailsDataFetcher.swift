@@ -61,12 +61,16 @@ final class CocktailsDataFetcher {
                 return
             }
             
-            let result = JSONWorker.shared.decodeJSON(type: Cocktail.self, from: data)
+            let cocktailsData = JSONWorker.shared.decodeJSON(type: CocktailsData.self, from: data)
             
-            guard let result = result else {
+            guard let cocktailsData = cocktailsData else {
                 DispatchQueue.main.async {
                     completion(.failure(.decodingError))
                 }
+                return
+            }
+            
+            guard let result = cocktailsData.cocktails.first else {
                 return
             }
         

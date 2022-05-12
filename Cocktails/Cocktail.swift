@@ -7,17 +7,20 @@
 
 import Foundation
 
-struct Cocktail: Decodable {
-    let drinks: [Drink]
+struct CocktailsData: Decodable {
+    let cocktails: [Cocktail]
+    
+    enum CodingKeys: String, CodingKey {
+        case cocktails = "drinks"
+    }
 }
 
-struct Drink: Decodable {
+struct Cocktail: Decodable {
     let name: String?
     let category: String?
-//    let category: String?
-//    let strGlass: String?
-//    let strDrinkThumb: String?
-//    let strImageSource: String?
+    let glassName: String?
+    let imageUrl: String?
+    let thumbUrl: String?
 //    let strIngredient1: String?
 //    let strIngredient2: String?
 //    let strIngredient3: String?
@@ -28,12 +31,11 @@ struct Drink: Decodable {
 //    let strIngredient8: String?
 //    let strIngredient9: String?
 
-//    enum CodingKeys: String, CodingKey {
-//        case name = "strDrink"
-//        case category = "strCategory"
-//    }
     enum CodingKeys: String, CodingKey {
         case name = "strDrink"
         case category = "strCategory"
+        case glassName = "strGlass"
+        case imageUrl = "strImageSource"
+        case thumbUrl = "strDrinkThumb"
     }
 }
