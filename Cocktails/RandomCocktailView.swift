@@ -14,14 +14,23 @@ struct RandomCocktailView: View {
     var body: some View {
         VStack {
             Text(viewModel.name)
+                .font(.title2)
+                .offset(y: 20)
+                .frame(height: 50)
             Image("rum_DEMO")
                 .resizable()
                 .frame(width: 200, height: 200, alignment: .center)
                 .cornerRadius(100)
+                .offset(y: 20)
+            Spacer()
             Button("Next") {
                 viewModel.fetchCocktail()
             }
-            .font(.title)
+            .tint(.white)
+            .frame(width: 150, height: 50, alignment: .center)
+            .background(.red)
+            .cornerRadius(20)
+            .offset(y: -20)
         }
     }
 }
