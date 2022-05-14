@@ -13,6 +13,7 @@ class RandomCocktailViewModel: ObservableObject {
     @Published var isFavourite: Bool = false
     @Published var instructions: String = ""
     @Published var image: Data? = nil
+    @Published var isLoading = false
     
     private var cocktail: Cocktail?
     
@@ -21,6 +22,7 @@ class RandomCocktailViewModel: ObservableObject {
     }
     
     func fetchCocktail()  {
+        isLoading = true
         CocktailsDataFetcher.shared.randomCocktail { result in
             switch result {
             case .success(let cocktail):
@@ -29,6 +31,7 @@ class RandomCocktailViewModel: ObservableObject {
                 self.instructions = cocktail.instructions ?? ""
                 self.isFavourite = true
                 self.image = cocktail.imageData
+                self.isLoading = false
             default:
                 break
             }

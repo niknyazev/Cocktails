@@ -23,15 +23,6 @@ struct Cocktail: Decodable {
     let thumbUrl: String?
     let instructions: String?
     var imageData: Data?
-//    let strIngredient1: String?
-//    let strIngredient2: String?
-//    let strIngredient3: String?
-//    let strIngredient4: String?
-//    let strIngredient5: String?
-//    let strIngredient6: String?
-//    let strIngredient7: String?
-//    let strIngredient8: String?
-//    let strIngredient9: String?
 
     enum CodingKeys: String, CodingKey {
         case name = "strDrink"

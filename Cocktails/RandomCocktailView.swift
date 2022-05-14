@@ -17,11 +17,18 @@ struct RandomCocktailView: View {
                 .font(.title2)
                 .offset(y: 20)
                 .frame(height: 50)
-            getImage(data: viewModel.image)
-                .resizable()
-                .frame(width: 200, height: 200, alignment: .center)
-                .cornerRadius(100)
-                .offset(y: 20)
+            ZStack {
+                getImage(data: viewModel.image)
+                    .resizable()
+                    .frame(width: 200, height: 200, alignment: .center)
+                    .cornerRadius(100)
+                if viewModel.isLoading {
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                        .scaleEffect(1)
+                }
+            }
+            .offset(y: 20)
             Button {
                 print("Its toggle")
             } label: {
