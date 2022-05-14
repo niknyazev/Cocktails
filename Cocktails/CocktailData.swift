@@ -21,6 +21,8 @@ struct Cocktail: Decodable {
     let glassName: String?
     let imageUrl: String?
     let thumbUrl: String?
+    let instructions: String?
+    var imageData: Data?
 //    let strIngredient1: String?
 //    let strIngredient2: String?
 //    let strIngredient3: String?
@@ -37,5 +39,6 @@ struct Cocktail: Decodable {
         case glassName = "strGlass"
         case imageUrl = "strImageSource"
         case thumbUrl = "strDrinkThumb"
+        case instructions = "strInstructions"
     }
 }

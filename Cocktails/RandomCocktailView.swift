@@ -17,26 +17,58 @@ struct RandomCocktailView: View {
                 .font(.title2)
                 .offset(y: 20)
                 .frame(height: 50)
-            Image("rum_DEMO")
+            getImage(data: viewModel.image)
                 .resizable()
                 .frame(width: 200, height: 200, alignment: .center)
                 .cornerRadius(100)
                 .offset(y: 20)
-            Spacer()
-            Button("Next") {
-                viewModel.fetchCocktail()
+            Button {
+                print("Its toggle")
+            } label: {
+                Image(systemName: "bookmark")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 20)
+                    .tint(.red)
             }
-            .tint(.white)
-            .frame(width: 150, height: 50, alignment: .center)
-            .background(.red)
-            .cornerRadius(20)
+            .offset(x: 100, y: 20)
+            Text(viewModel.instructions)
+                .frame(width: 250, height: 200, alignment: .topLeading)
+                .offset(y: 30)
+            Spacer()
+            HStack {
+                Button("Next") {
+                    viewModel.fetchCocktail()
+                }
+                .tint(.white)
+                .frame(width: 150, height: 50, alignment: .center)
+                .background(.red)
+                .cornerRadius(20)
+            }
             .offset(y: -20)
         }
     }
+    
+    func getImage(data: Data?) -> Image {
+        
+        let defaultImage = Image("rum_DEMO")
+        
+        guard let data = data else {
+            return defaultImage
+        }
+        
+        guard let image = UIImage(data: data) else {
+            return defaultImage
+        }
+        return Image(uiImage: image)
+    }
+    
 }
 
 struct RandomCocktail_Previews: PreviewProvider {
     static var previews: some View {
-        RandomCocktailView()
+        RandomCocktailView(
+            viewModel: RandomCocktailViewModel()
+        )
     }
 }

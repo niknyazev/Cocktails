@@ -34,8 +34,8 @@ final class CocktailsDataFetcher {
         
         urlDataTask(request: request, completion: completion)
     }
-        
-    func request(query: String, completion: @escaping (Result<Cocktail, NetworkError>) -> Void) {
+            
+    func cocktailData(query: String, completion: @escaping (Result<Cocktail, NetworkError>) -> Void) {
     
         guard let encodingQuery = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }
         
@@ -46,6 +46,12 @@ final class CocktailsDataFetcher {
         request.httpMethod = "get"
         
         urlDataTask(request: request, completion: completion)
+    }
+    
+    func fetchImageData(from url: String) -> Data? {
+        guard let imageURL = URL(string: url) else { return nil }
+        guard let imageData = try? Data(contentsOf: imageURL) else { return nil }
+        return imageData
     }
     
     // MARK: - Private methods
@@ -70,10 +76,12 @@ final class CocktailsDataFetcher {
                 return
             }
             
-            guard let result = cocktailsData.cocktails.first else {
+            guard var result = cocktailsData.cocktails.first else {
                 return
             }
         
+            result.imageData = self.fetchImageData(from: result.thumbUrl ?? "")
+            
             DispatchQueue.main.async {
                 completion(.success(result))
             }
