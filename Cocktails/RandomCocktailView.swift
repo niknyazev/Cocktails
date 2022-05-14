@@ -15,20 +15,10 @@ struct RandomCocktailView: View {
         VStack {
             Text(viewModel.name)
                 .font(.title2)
-                .offset(y: 20)
                 .frame(height: 50)
-            ZStack {
-                getImage(data: viewModel.image)
-                    .resizable()
-                    .frame(width: 200, height: 200, alignment: .center)
-                    .cornerRadius(100)
-                if viewModel.isLoading {
-                    ProgressView()
-                        .progressViewStyle(CircularProgressViewStyle(tint: .white))
-                        .scaleEffect(1)
-                }
-            }
-            .offset(y: 20)
+                .offset(y: 20)
+            CocktailImage(isLoading: viewModel.isLoading, image: viewModel.image)
+                .offset(y: 20)
             Button {
                 print("Its toggle")
             } label: {
@@ -55,6 +45,35 @@ struct RandomCocktailView: View {
             .offset(y: -20)
         }
     }
+        
+}
+
+struct RandomCocktail_Previews: PreviewProvider {
+    static var previews: some View {
+        RandomCocktailView(
+            viewModel: RandomCocktailViewModel()
+        )
+    }
+}
+
+struct CocktailImage: View {
+    
+    let isLoading: Bool
+    let image: Data?
+    
+    var body: some View {
+        ZStack {
+            getImage(data: image)
+                .resizable()
+                .frame(width: 200, height: 200, alignment: .center)
+                .cornerRadius(100)
+            if isLoading {
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                    .scaleEffect(1)
+            }
+        }
+    }
     
     func getImage(data: Data?) -> Image {
         
@@ -68,14 +87,5 @@ struct RandomCocktailView: View {
             return defaultImage
         }
         return Image(uiImage: image)
-    }
-    
-}
-
-struct RandomCocktail_Previews: PreviewProvider {
-    static var previews: some View {
-        RandomCocktailView(
-            viewModel: RandomCocktailViewModel()
-        )
     }
 }
