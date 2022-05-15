@@ -11,19 +11,29 @@ struct CocktailsListView: View {
     
     let cocktails: [Cocktail_DEMO_REMOVE]
     
+    @State private var searchText = ""
+    
     var body: some View {
-        List(cocktails) { cocktail in
-            HStack {
-                VStack {
-                    Text(cocktail.name)
-                        .font(.title)
-                    Text(cocktail.description)
+        NavigationView {
+            if searchText.isEmpty {
+                Text("Enter cocktail name")
+            } else {
+                List(cocktails) { cocktail in
+                    HStack {
+                        VStack {
+                            Text(cocktail.name)
+                                .font(.title)
+                            Text(cocktail.description)
+                        }
+                        
+                        Spacer()
+                        Image(systemName: cocktail.imageName)
+                    }
                 }
-                
-                Spacer()
-                Image(systemName: cocktail.imageName)
             }
         }
+        .searchable(text: $searchText)
+        .navigationTitle("Cocktails searcher")
     }
 }
 
