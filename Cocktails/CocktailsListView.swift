@@ -15,25 +15,27 @@ struct CocktailsListView: View {
     
     var body: some View {
         NavigationView {
-            if searchText.isEmpty {
-                Text("Enter cocktail name")
-            } else {
-                List(cocktails) { cocktail in
-                    HStack {
-                        VStack {
-                            Text(cocktail.name)
-                                .font(.title)
-                            Text(cocktail.description)
+            VStack {
+                if searchText.isEmpty {
+                    Text("Enter cocktail name")
+                } else {
+                    List(cocktails) { cocktail in
+                        HStack {
+                            VStack {
+                                Text(cocktail.name)
+                                    .font(.title)
+                                Text(cocktail.description)
+                            }
+                            
+                            Spacer()
+                            Image(systemName: cocktail.imageName)
                         }
-                        
-                        Spacer()
-                        Image(systemName: cocktail.imageName)
                     }
                 }
             }
+            .navigationTitle("Cocktails searcher")
         }
         .searchable(text: $searchText)
-        .navigationTitle("Cocktails searcher")
     }
 }
 

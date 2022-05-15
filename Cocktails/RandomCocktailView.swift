@@ -12,40 +12,40 @@ struct RandomCocktailView: View {
     @StateObject var viewModel = RandomCocktailViewModel()
     
     var body: some View {
-        VStack {
-            Text(viewModel.name)
-                .font(.title2)
-                .frame(height: 50)
-                .offset(y: 20)
-            CocktailImage(isLoading: viewModel.isLoading, image: viewModel.image)
-                .offset(y: 20)
-            Button {
-                print("Its toggle")
-            } label: {
-                Image(systemName: "bookmark")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 20)
-                    .tint(.red)
-            }
-            .offset(x: 100, y: 20)
-            Text(viewModel.instructions)
-                .frame(width: 250, height: 200, alignment: .topLeading)
-                .offset(y: 30)
-            Spacer()
-            HStack {
-                Button("Next") {
-                    viewModel.fetchCocktail()
+        NavigationView {
+            VStack {
+                Text(viewModel.name)
+                    .font(.title2)
+                    .frame(height: 50)
+                CocktailImage(isLoading: viewModel.isLoading, image: viewModel.image)
+                Button {
+                    print("Its toggle")
+                } label: {
+                    Image(systemName: "bookmark")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 20)
+                        .tint(.red)
                 }
-                .tint(.white)
-                .frame(width: 150, height: 50, alignment: .center)
-                .background(.red)
-                .cornerRadius(20)
+                .offset(x: 100)
+                Text(viewModel.instructions)
+                    .frame(width: 300, height: 200, alignment: .topLeading)
+                    .offset(y: 30)
+                Spacer()
+                HStack {
+                    Button("Next") {
+                        viewModel.fetchCocktail()
+                    }
+                    .tint(.white)
+                    .frame(width: 150, height: 50, alignment: .center)
+                    .background(.red)
+                    .cornerRadius(20)
+                }
+                .offset(y: -20)
             }
-            .offset(y: -20)
+            .navigationTitle("Random cocktail")
         }
     }
-        
 }
 
 struct RandomCocktail_Previews: PreviewProvider {
