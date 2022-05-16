@@ -25,7 +25,12 @@ class RandomCocktailViewModel: ObservableObject {
         isLoading = true
         CocktailsDataFetcher.shared.randomCocktail { result in
             switch result {
-            case .success(let cocktail):
+            case .success(let cocktails):
+                
+                guard let cocktail = cocktails.first else {
+                    return
+                }
+
                 self.cocktail = cocktail
                 self.name = cocktail.name ?? ""
                 self.instructions = cocktail.instructions ?? ""

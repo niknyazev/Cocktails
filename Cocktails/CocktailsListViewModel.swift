@@ -9,9 +9,18 @@ import Foundation
 
 class CocktailsListViewModel: ObservableObject {
     
-    let cocktails: [CocktailRowViewModel] = []    
-}
-
-class CocktailRowViewModel {
+    @Published var cocktails: [CocktailRowViewModel] = []
     
+    func fetchCocktails(query: String) {
+        CocktailsDataFetcher.shared.cocktailData(query: query) { result in
+            switch result {
+            case .success(let cocktails):
+                for cocktail in cocktails {
+                    self.cocktails.append(CocktailRowViewModel(cocktail: cocktail))
+                }
+            default:
+                break
+            }
+        }
+    }
 }

@@ -10,6 +10,7 @@ import SwiftUI
 struct CocktailsListView: View {
     
     let cocktails: [Cocktail_DEMO_REMOVE]
+    let viewModel = CocktailsListViewModel()
     
     @State private var searchText = ""
     
@@ -19,18 +20,20 @@ struct CocktailsListView: View {
                 if searchText.isEmpty {
                     Text("Enter cocktail name")
                 } else {
-                    List(cocktails) { cocktail in
-                        HStack {
-                            VStack {
-                                Text(cocktail.name)
-                                    .font(.title)
-                                Text(cocktail.description)
-                            }
-                            
-                            Spacer()
-                            Image(systemName: cocktail.imageName)
-                        }
-                    }
+                    Text(searchText)
+//                    viewModel.fetchCocktails(query: searchText)
+//                    List(cocktails) { cocktail in
+//                        HStack {
+//                            VStack {
+//                                Text(cocktail.name)
+//                                    .font(.title)
+//                                Text(cocktail.description)
+//                            }
+//
+//                            Spacer()
+//                            Image(systemName: cocktail.imageName)
+//                        }
+//                    }
                 }
             }
             .navigationTitle("Cocktails searcher")

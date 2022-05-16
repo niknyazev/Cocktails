@@ -25,7 +25,7 @@ final class CocktailsDataFetcher {
     
     // MARK: - Public methods
     
-    func randomCocktail(completion: @escaping (Result<Cocktail, NetworkError>) -> Void) {
+    func randomCocktail(completion: @escaping (Result<[Cocktail], NetworkError>) -> Void) {
         
         let url = urlRandomCocktail()
        
@@ -35,11 +35,9 @@ final class CocktailsDataFetcher {
         urlDataTask(request: request, completion: completion)
     }
             
-    func cocktailData(query: String, completion: @escaping (Result<Cocktail, NetworkError>) -> Void) {
-    
-        guard let encodingQuery = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }
+    func cocktailData(query: String, completion: @escaping (Result<[Cocktail], NetworkError>) -> Void) {
         
-        let queryParameters = queryParameters(query: encodingQuery)
+        let queryParameters = queryParameters(query: query)
         let url = urlSearchCocktail(queryItems: queryParameters)
        
         var request = URLRequest(url: url)
@@ -56,7 +54,7 @@ final class CocktailsDataFetcher {
     
     // MARK: - Private methods
     
-    private func urlDataTask(request: URLRequest, completion: @escaping (Result<Cocktail, NetworkError>) -> Void) {
+    private func urlDataTask(request: URLRequest, completion: @escaping (Result<[Cocktail], NetworkError>) -> Void) {
         
         URLSession.shared.dataTask(with: request) { (data, _, _) in
                             
@@ -76,12 +74,12 @@ final class CocktailsDataFetcher {
                 return
             }
             
-            guard var result = cocktailsData.cocktails.first else {
-                return
-            }
-        
-            result.imageData = self.fetchImageData(from: result.thumbUrl ?? "")
+            var result = cocktailsData.cocktails
             
+            for index in 0..<result.count {
+                result[index].imageData = self.fetchImageData(from: result[index].thumbUrl ?? "")
+            }
+                    
             DispatchQueue.main.async {
                 completion(.success(result))
             }
