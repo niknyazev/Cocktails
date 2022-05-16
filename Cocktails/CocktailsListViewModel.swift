@@ -12,6 +12,7 @@ class CocktailsListViewModel: ObservableObject {
     @Published var cocktails: [CocktailRowViewModel] = []
     
     func fetchCocktails(query: String) {
+        cocktails.removeAll()
         CocktailsDataFetcher.shared.cocktailData(query: query) { result in
             switch result {
             case .success(let cocktails):

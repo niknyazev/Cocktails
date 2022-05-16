@@ -7,10 +7,14 @@
 
 import Foundation
 
-class CocktailRowViewModel {
+class CocktailRowViewModel: Identifiable {
     
     var name: String {
         cocktail.name ?? ""
+    }
+    
+    var image: Data? {
+        cocktail.imageData
     }
     
     let cocktail: Cocktail
