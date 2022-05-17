@@ -55,6 +55,7 @@ struct CocktailRowView_Previews: PreviewProvider {
         CocktailRowView(
             viewModel: CocktailDetailsViewModel(
                 cocktail: Cocktail(
+                    id: "0001",
                     name: "Gin",
                     category: nil,
                     glassName: nil,

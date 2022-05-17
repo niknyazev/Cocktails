@@ -19,9 +19,9 @@ struct RandomCocktailView: View {
                     .frame(height: 50)
                 CocktailImage(isLoading: viewModel.isLoading, image: viewModel.image)
                 Button {
-                    print("Its toggle")
+                    viewModel.favoriteButtonPressed()
                 } label: {
-                    Image(systemName: "bookmark")
+                    Image(systemName: viewModel.isFavourite ? "bookmark.fill" : "bookmark")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 20)

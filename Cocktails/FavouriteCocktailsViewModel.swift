@@ -6,3 +6,14 @@
 //
 
 import Foundation
+
+class FavouriteCocktailsViewModel: ObservableObject {
+    
+    @Published var cocktails: [CocktailStorageData]
+    
+    init() {
+        cocktails = FavouriteCocktailsStorageManager.shared.fetchCocktails()
+    }
+    
+    
+}

@@ -17,6 +17,7 @@
 		017A89132832AE49001FF45B /* CocktailDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017A89122832AE49001FF45B /* CocktailDetailsViewModel.swift */; };
 		017A891828339854001FF45B /* CocktailDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017A891728339854001FF45B /* CocktailDetailsView.swift */; };
 		017A891A283399EB001FF45B /* CocktailRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017A8919283399EA001FF45B /* CocktailRowView.swift */; };
+		017A891F2833BA22001FF45B /* FavouriteCocktailsStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017A891E2833BA22001FF45B /* FavouriteCocktailsStorageManager.swift */; };
 		019ED77A282E9BFE0052AE40 /* CocktailsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019ED779282E9BFE0052AE40 /* CocktailsListViewModel.swift */; };
 		019ED77D282E9CBC0052AE40 /* FavouriteCocktailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019ED77C282E9CBC0052AE40 /* FavouriteCocktailsViewModel.swift */; };
 		01F6ADB12822E33F0057DB1F /* RandomCocktailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F6ADB02822E33F0057DB1F /* RandomCocktailView.swift */; };
@@ -37,6 +38,7 @@
 		017A89122832AE49001FF45B /* CocktailDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailDetailsViewModel.swift; sourceTree = "<group>"; };
 		017A891728339854001FF45B /* CocktailDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailDetailsView.swift; sourceTree = "<group>"; };
 		017A8919283399EA001FF45B /* CocktailRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailRowView.swift; sourceTree = "<group>"; };
+		017A891E2833BA22001FF45B /* FavouriteCocktailsStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteCocktailsStorageManager.swift; sourceTree = "<group>"; };
 		019ED779282E9BFE0052AE40 /* CocktailsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailsListViewModel.swift; sourceTree = "<group>"; };
 		019ED77C282E9CBC0052AE40 /* FavouriteCocktailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteCocktailsViewModel.swift; sourceTree = "<group>"; };
 		01F6ADB02822E33F0057DB1F /* RandomCocktailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomCocktailView.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 			children = (
 				011942DE281C5BE400489771 /* CocktailsDataFetcher.swift */,
 				011942E0281C647800489771 /* JSONWorker.swift */,
+				017A891E2833BA22001FF45B /* FavouriteCocktailsStorageManager.swift */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -229,6 +232,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				017A891F2833BA22001FF45B /* FavouriteCocktailsStorageManager.swift in Sources */,
 				011942D12819B05200489771 /* ContentView.swift in Sources */,
 				011942DF281C5BE400489771 /* CocktailsDataFetcher.swift in Sources */,
 				011942CF2819B05200489771 /* CocktailsApp.swift in Sources */,
