@@ -9,7 +9,7 @@ import Foundation
 
 class CocktailsListViewModel: ObservableObject {
     
-    @Published var cocktails: [CocktailRowViewModel] = []
+    @Published var cocktails: [CocktailDetailsViewModel] = []
     
     func fetchCocktails(query: String) {
         cocktails.removeAll()
@@ -17,7 +17,7 @@ class CocktailsListViewModel: ObservableObject {
             switch result {
             case .success(let cocktails):
                 for cocktail in cocktails {
-                    self.cocktails.append(CocktailRowViewModel(cocktail: cocktail))
+                    self.cocktails.append(CocktailDetailsViewModel(cocktail: cocktail))
                 }
             default:
                 break

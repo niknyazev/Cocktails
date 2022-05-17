@@ -9,11 +9,11 @@ import SwiftUI
 
 struct CocktailDetailsView: View {
     
-    let viewModel: CocktailRowViewModel
+    let viewModel: CocktailDetailsViewModel
     
     var body: some View {
         VStack {
-//            CocktailImage(isLoading: viewModel.isLoading, image: viewModel.image)
+            CocktailImage(isLoading: false, image: viewModel.image)
             Button {
                 print("Its toggle")
             } label: {
@@ -24,10 +24,10 @@ struct CocktailDetailsView: View {
                     .tint(.red)
             }
             .offset(x: 100)
+            Text(viewModel.instructions)
+                .frame(width: 300, height: 200, alignment: .topLeading)
+                .offset(y: 30)
             Spacer()
-//            Text(viewModel.instructions)
-//                .frame(width: 300, height: 200, alignment: .topLeading)
-//                .offset(y: 30)
         }
         .navigationTitle(viewModel.name)
     }
@@ -36,7 +36,7 @@ struct CocktailDetailsView: View {
 struct CocktailDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         CocktailDetailsView(
-            viewModel: CocktailRowViewModel(
+            viewModel: CocktailDetailsViewModel(
                 cocktail: Cocktail(
                     name: "Gin",
                     category: nil,

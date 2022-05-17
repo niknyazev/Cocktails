@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CocktailRowView: View {
     
-    let viewModel: CocktailRowViewModel
+    let viewModel: CocktailDetailsViewModel
     
     var body: some View {
         HStack {
@@ -53,7 +53,7 @@ struct CocktailRowView: View {
 struct CocktailRowView_Previews: PreviewProvider {
     static var previews: some View {
         CocktailRowView(
-            viewModel: CocktailRowViewModel(
+            viewModel: CocktailDetailsViewModel(
                 cocktail: Cocktail(
                     name: "Gin",
                     category: nil,
