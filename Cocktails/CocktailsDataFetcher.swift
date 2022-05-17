@@ -46,13 +46,13 @@ final class CocktailsDataFetcher {
         urlDataTask(request: request, completion: completion)
     }
     
-    func fetchImageData(from url: String) -> Data? {
+    // MARK: - Private methods
+    
+    private func fetchImageData(from url: String) -> Data? {
         guard let imageURL = URL(string: url) else { return nil }
         guard let imageData = try? Data(contentsOf: imageURL) else { return nil }
         return imageData
     }
-    
-    // MARK: - Private methods
     
     private func urlDataTask(request: URLRequest, completion: @escaping (Result<[Cocktail], NetworkError>) -> Void) {
         
