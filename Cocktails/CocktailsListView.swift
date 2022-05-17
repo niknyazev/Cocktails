@@ -19,13 +19,8 @@ struct CocktailsListView: View {
                     Text("Enter cocktail name")
                 } else {
                     List(viewModel.cocktails) { cocktail in
-                        HStack {
-                            getImage(data: cocktail.image)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 50)
-                                .cornerRadius(25)
-                            Text(cocktail.name)
+                        NavigationLink(destination: CocktailDetailsView()) {
+                            CocktailRowView(viewModel: cocktail)
                         }
                     }
                 }
@@ -36,22 +31,6 @@ struct CocktailsListView: View {
         .onChange(of: searchText) { newValue in
             viewModel.fetchCocktails(query: newValue)
         }
-    }
-           
-            
-    // TODO: duplicate
-    func getImage(data: Data?) -> Image {
-        
-        let defaultImage = Image("rum_DEMO")
-        
-        guard let data = data else {
-            return defaultImage
-        }
-        
-        guard let image = UIImage(data: data) else {
-            return defaultImage
-        }
-        return Image(uiImage: image)
     }
 }
 
