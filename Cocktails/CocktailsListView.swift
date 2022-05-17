@@ -17,9 +17,11 @@ struct CocktailsListView: View {
             VStack {
                 if searchText.isEmpty {
                     Text("Enter cocktail name")
+                        .font(.title2)
+                        .foregroundColor(.gray)
                 } else {
                     List(viewModel.cocktails) { cocktail in
-                        NavigationLink(destination: CocktailDetailsView()) {
+                        NavigationLink(destination: CocktailDetailsView(viewModel: cocktail)) {
                             CocktailRowView(viewModel: cocktail)
                         }
                     }
