@@ -10,6 +10,7 @@ import SwiftUI
 struct RandomCocktailView: View {
     
     @StateObject var viewModel = RandomCocktailViewModel()
+    @EnvironmentObject private var favoriteCocktails: FavouriteCocktailsViewModel
     
     var body: some View {
         NavigationView {
@@ -19,7 +20,7 @@ struct RandomCocktailView: View {
                     .frame(height: 50)
                 CocktailImage(isLoading: viewModel.isLoading, image: viewModel.image)
                 Button {
-                    viewModel.favoriteButtonPressed()
+                    favoriteButtonPressed()
                 } label: {
                     Image(systemName: viewModel.isFavourite ? "bookmark.fill" : "bookmark")
                         .resizable()
@@ -45,6 +46,11 @@ struct RandomCocktailView: View {
             }
             .navigationTitle("Random cocktail")
         }
+    }
+    
+    func favoriteButtonPressed() {
+        viewModel.favoriteButtonPressed()
+        favoriteCocktails.updateFavorite() // TODO: move to MVVM class
     }
 }
 

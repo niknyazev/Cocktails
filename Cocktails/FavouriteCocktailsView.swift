@@ -9,12 +9,12 @@ import SwiftUI
 
 struct FavouriteCocktailsView: View {
     
-    @StateObject private var viewModel = FavouriteCocktailsViewModel()
+    @EnvironmentObject private var favoriteCocktails: FavouriteCocktailsViewModel
     
     var body: some View {
         NavigationView {
             Group {
-                List(viewModel.cocktails) { cocktail in
+                List(favoriteCocktails.cocktails) { cocktail in
                     HStack {
                         getImage(data: cocktail.image)
                             .resizable()
