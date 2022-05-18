@@ -9,12 +9,12 @@ import SwiftUI
 
 struct FavouriteCocktailsView: View {
     
-    @EnvironmentObject private var favoriteCocktails: FavouriteCocktailsViewModel
+    @StateObject private var viewModel = FavouriteCocktailsViewModel()
     
     var body: some View {
         NavigationView {
             Group {
-                List(favoriteCocktails.cocktails) { cocktail in
+                List(viewModel.cocktails) { cocktail in
                     HStack {
                         getImage(data: cocktail.image)
                             .resizable()
@@ -22,10 +22,13 @@ struct FavouriteCocktailsView: View {
                             .frame(width: 50)
                             .cornerRadius(25)
                         Text(cocktail.name)
+                            .offset(x: 10)
                     }
+                    .padding(.all, 10)
                 }
             }
             .navigationTitle("Favorite cocktails")
+            .onAppear(perform: viewModel.updateFavorite)
         }
     }
     

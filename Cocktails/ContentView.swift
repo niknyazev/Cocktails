@@ -9,12 +9,9 @@ import SwiftUI
 
 struct ContentView: View {
         
-    @StateObject private var favoriteCocktails = FavouriteCocktailsViewModel()
-    
     var body: some View {
         TabView {
             RandomCocktailView()
-                .environmentObject(favoriteCocktails)
                 .tabItem {
                     Image(systemName: "circle")
                     Text("Random")
@@ -25,7 +22,6 @@ struct ContentView: View {
                     Text("Cocktails")
                 }
             FavouriteCocktailsView()
-                .environmentObject(favoriteCocktails)
                 .tabItem {
                     Image(systemName: "circle")
                     Text("Favourite")
