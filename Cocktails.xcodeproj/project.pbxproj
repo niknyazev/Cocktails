@@ -77,12 +77,12 @@
 		011942CD2819B05200489771 /* Cocktails */ = {
 			isa = PBXGroup;
 			children = (
-				017A891428339807001FF45B /* CocktailDetails */,
-				011942E228206A6500489771 /* Models */,
 				011942E328206A7D00489771 /* Managers */,
+				011942E228206A6500489771 /* Models */,
+				01F6ADB62823FA780057DB1F /* RandomCocktail */,
+				017A891428339807001FF45B /* CocktailDetails */,
 				019ED77B282E9C9F0052AE40 /* FavouriteCocktails */,
 				019ED778282E9BCD0052AE40 /* CocktailsList */,
-				01F6ADB62823FA780057DB1F /* RandomCocktail */,
 				011942CE2819B05200489771 /* CocktailsApp.swift */,
 				011942D02819B05200489771 /* ContentView.swift */,
 				011942D22819B05400489771 /* Assets.xcassets */,

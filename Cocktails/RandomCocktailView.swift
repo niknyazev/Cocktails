@@ -30,7 +30,7 @@ struct RandomCocktailView: View {
                 .offset(x: 100)
                 Text(viewModel.instructions)
                     .frame(width: 300, height: 200, alignment: .topLeading)
-                    .offset(y: 30)
+                    .padding(.top, 20)
                 Spacer()
                 HStack {
                     Button("Next") {
@@ -41,7 +41,7 @@ struct RandomCocktailView: View {
                     .background(.red)
                     .cornerRadius(20)
                 }
-                .offset(y: -20)
+                .padding(.bottom, 20)
             }
             .navigationTitle("Random cocktail")
         }

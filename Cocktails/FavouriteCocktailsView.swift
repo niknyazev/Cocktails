@@ -13,7 +13,7 @@ struct FavouriteCocktailsView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
+            Group {
                 List(viewModel.cocktails) { cocktail in
                     HStack {
                         getImage(data: cocktail.image)

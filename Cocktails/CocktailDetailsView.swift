@@ -26,7 +26,7 @@ struct CocktailDetailsView: View {
             .offset(x: 100)
             Text(viewModel.instructions)
                 .frame(width: 300, height: 200, alignment: .topLeading)
-                .offset(y: 30)
+                .padding(.top, 20)
             Spacer()
         }
         .navigationTitle(viewModel.name)
