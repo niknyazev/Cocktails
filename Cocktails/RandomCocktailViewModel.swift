@@ -15,37 +15,44 @@ class RandomCocktailViewModel: ObservableObject {
     @Published var image: Data? = nil
     @Published var isLoading = false
     
-    private var cocktail: Cocktail?
+    private var cocktail: Cocktail? = nil
     
-    init() {
-        fetchCocktail()
-    }
-    
-    func fetchCocktail() {
+    func fetchCocktail() async {
         isLoading = true
-        CocktailsDataFetcher.shared.randomCocktail { result in
-            switch result {
-            case .success(let cocktails):
-                
-                guard let cocktail = cocktails.first else {
-                    return
-                }
-
-                self.cocktail = cocktail
-                self.name = cocktail.name ?? ""
-                self.instructions = cocktail.instructions ?? ""
-                self.isFavourite = true
-                self.image = cocktail.imageData
-                self.isLoading = false
-                
-                self.isFavourite = FavouriteCocktailsStorageManager
-                    .shared
-                    .fetchCocktails()
-                    .first { $0.id == self.cocktail?.id ?? "" } != nil
-            default:
-                break
+        
+        do {
+            let cocktails = try await CocktailsDataFetcher.shared.randomCocktail()
+            guard let cocktail = cocktails.first else {
+                return
             }
+            self.cocktail = cocktail
+        } catch {
+            print(error)
         }
+        
+//        CocktailsDataFetcher.shared.randomCocktail { result in
+//            switch result {
+//            case .success(let cocktails):
+//
+//                guard let cocktail = cocktails.first else {
+//                    return
+//                }
+//
+//                self.cocktail = cocktail
+//                self.name = cocktail.name ?? ""
+//                self.instructions = cocktail.instructions ?? ""
+//                self.isFavourite = true
+//                self.image = cocktail.imageData
+//                self.isLoading = false
+//
+//                self.isFavourite = FavouriteCocktailsStorageManager
+//                    .shared
+//                    .fetchCocktails()
+//                    .first { $0.id == self.cocktail?.id ?? "" } != nil
+//            default:
+//                break
+//            }
+//        }
     }
     
     func saveFavouriteStatus() {

@@ -25,25 +25,19 @@ final class CocktailsDataFetcher {
     
     // MARK: - Public methods
     
-    func randomCocktail(completion: @escaping (Result<[Cocktail], NetworkError>) -> Void) {
+    func randomCocktail() async throws -> [Cocktail] {
         
         let url = urlRandomCocktail()
-       
-        var request = URLRequest(url: url)
-        request.httpMethod = "get"
-        
-        urlDataTask(request: request, completion: completion)
+             
+        return try await urlDataTask(url: url)
     }
             
-    func cocktailData(query: String, completion: @escaping (Result<[Cocktail], NetworkError>) -> Void) {
+    func cocktailData(query: String) async throws -> [Cocktail] {
         
         let queryParameters = queryParameters(query: query)
         let url = urlSearchCocktail(queryItems: queryParameters)
-       
-        var request = URLRequest(url: url)
-        request.httpMethod = "get"
-        
-        urlDataTask(request: request, completion: completion)
+               
+        return try await urlDataTask(url: url)
     }
     
     // MARK: - Private methods
@@ -54,36 +48,23 @@ final class CocktailsDataFetcher {
         return imageData
     }
     
-    private func urlDataTask(request: URLRequest, completion: @escaping (Result<[Cocktail], NetworkError>) -> Void) {
+    private func urlDataTask(url: URL) async throws -> [Cocktail] {
+       
+        let (data, _) = try await URLSession.shared.data(from: url)
         
-        URLSession.shared.dataTask(with: request) { (data, _, _) in
-                            
-            if data == nil {
-                DispatchQueue.main.async {
-                    completion(.failure(.noData))
-                }
-                return
-            }
-            
-            let cocktailsData = JSONWorker.shared.decodeJSON(type: CocktailsData.self, from: data)
-            
-            guard let cocktailsData = cocktailsData else {
-                DispatchQueue.main.async {
-                    completion(.failure(.decodingError))
-                }
-                return
-            }
-            
-            var result = cocktailsData.cocktails
-            
-            for index in 0..<result.count {
-                result[index].imageData = self.fetchImageData(from: result[index].thumbUrl ?? "")
-            }
-                    
-            DispatchQueue.main.async {
-                completion(.success(result))
-            }
-        }.resume()
+        let decoder = JSONDecoder()
+        
+        guard let result = try? decoder.decode([Cocktail].self, from: data) else {
+            throw NetworkError.decodingError
+        }
+        
+        return result
+        
+//        var result = cocktailsData.cocktails
+//
+//        for index in 0..<result.count {
+//            result[index].imageData = self.fetchImageData(from: result[index].thumbUrl ?? "")
+//        }
     }
     
     private func queryParameters(query: String) -> [URLQueryItem] {

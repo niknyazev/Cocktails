@@ -34,7 +34,9 @@ struct RandomCocktailView: View {
                 Spacer()
                 HStack {
                     Button("Next") {
-                        viewModel.fetchCocktail()
+                        Task {
+                            await viewModel.fetchCocktail()
+                        }
                     }
                     .tint(.white)
                     .frame(width: 150, height: 50, alignment: .center)
