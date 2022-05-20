@@ -29,6 +29,7 @@ struct CocktailDetailsView: View {
                 .padding(.top, 20)
             Spacer()
         }
+        .padding(10)
         .navigationTitle(viewModel.name)
     }
 }

@@ -24,7 +24,9 @@ struct Cocktail: Decodable {
     let thumbUrl: String?
     let instructions: String?
     var imageData: Data?
+}
 
+extension Cocktail {
     enum CodingKeys: String, CodingKey {
         case name = "strDrink"
         case category = "strCategory"

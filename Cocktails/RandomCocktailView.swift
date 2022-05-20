@@ -10,40 +10,71 @@ import SwiftUI
 struct RandomCocktailView: View {
     
     @StateObject var viewModel = RandomCocktailViewModel()
+    @State private var showPopUp = false
     
     var body: some View {
         NavigationView {
-            VStack {
-                Text(viewModel.name)
-                    .font(.title2)
-                    .frame(height: 50)
-                CocktailImage(isLoading: viewModel.isLoading, image: viewModel.image)
-                Button {
-                    viewModel.favoriteButtonPressed()
-                } label: {
-                    Image(systemName: viewModel.isFavourite ? "bookmark.fill" : "bookmark")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 20)
-                        .tint(.red)
-                }
-                .offset(x: 100)
-                Text(viewModel.instructions)
-                    .frame(width: 300, height: 200, alignment: .topLeading)
-                    .padding(.top, 20)
-                Spacer()
-                HStack {
-                    Button("Next") {
-                        Task {
-                            await viewModel.fetchCocktail()
+            ZStack {
+                VStack {
+
+                        Text(viewModel.name)
+                            .font(.title2)
+                            .frame(height: 50)
+                        CocktailImage(isLoading: viewModel.isLoading, image: viewModel.image)
+                        Button {
+                            viewModel.favoriteButtonPressed()
+                        } label: {
+                            Image(systemName: viewModel.isFavourite ? "bookmark.fill" : "bookmark")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 20)
+                                .tint(.red)
                         }
-                    }
-                    .tint(.white)
-                    .frame(width: 150, height: 50, alignment: .center)
-                    .background(.red)
-                    .cornerRadius(20)
+                        .offset(x: 100)
+                        Text(viewModel.instructions)
+                            .frame(width: 300, height: 200, alignment: .topLeading)
+                            .padding(.top, 20)
+                        Button {
+                            showPopUp.toggle()
+                        } label: {
+                            Text("Ingredients")
+                        }
+                        Spacer()
+                        HStack {
+                            Button("Next") {
+                                Task {
+                                    await viewModel.fetchCocktail()
+                                }
+                            }
+                            .tint(.white)
+                            .frame(width: 150, height: 50, alignment: .center)
+                            .background(.red)
+                            .cornerRadius(20)
+                        }
+                        .padding(.bottom, 20)
                 }
-                .padding(.bottom, 20)
+                if showPopUp {
+                    ZStack {
+                        Rectangle()
+                            .cornerRadius(15)
+                            .foregroundColor(.blue)
+                            .padding(30)
+                            .shadow(color: .gray, radius: 5)
+                            .opacity(0.9)
+                        VStack {
+                            Spacer()
+                            Button {
+                                showPopUp.toggle()
+                            } label: {
+                                Text("Close")
+                                    .foregroundColor(.white)
+                            }
+                        }.padding(30)
+                    }
+                    
+                        
+                }
+                
             }
             .navigationTitle("Random cocktail")
             .task {

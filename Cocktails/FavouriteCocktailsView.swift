@@ -24,7 +24,7 @@ struct FavouriteCocktailsView: View {
                         Text(cocktail.name)
                             .offset(x: 10)
                     }
-                    .padding(.all, 10)
+                    .padding(10)
                 }
             }
             .navigationTitle("Favorite cocktails")
