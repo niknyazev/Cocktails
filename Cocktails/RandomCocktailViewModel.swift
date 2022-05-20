@@ -24,9 +24,9 @@ class RandomCocktailViewModel: ObservableObject {
         
         do {
             
-            let cocktails = try await CocktailsDataFetcher.shared.randomCocktail()
+            let cocktail = try await CocktailsDataFetcher.shared.randomCocktail()
             
-            guard let cocktailData = cocktails.first else {
+            guard let cocktailData = cocktail else {
                 return
             }
             name = cocktailData.name ?? ""

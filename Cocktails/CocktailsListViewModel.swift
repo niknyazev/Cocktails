@@ -11,11 +11,12 @@ class CocktailsListViewModel: ObservableObject {
     
     @Published var cocktails: [CocktailDetailsViewModel] = []
     
+    @MainActor
     func fetchCocktails(query: String) async {
        
         cocktails.removeAll()
         
-        let cocktailsData = try? await CocktailsDataFetcher.shared.cocktailData(query: query)
+        let cocktailsData = try? await CocktailsDataFetcher.shared.searchCocktails(query: query)
         
         guard let cocktailsData = cocktailsData else {
             return
@@ -24,16 +25,5 @@ class CocktailsListViewModel: ObservableObject {
         for cocktail in cocktailsData {
             cocktails.append(CocktailDetailsViewModel(cocktail: cocktail))
         }
-        
-//        { result in
-//            switch result {
-//            case .success(let cocktails):
-//                for cocktail in cocktails {
-//                    self.cocktails.append(CocktailDetailsViewModel(cocktail: cocktail))
-//                }
-//            default:
-//                break
-//            }
-//        }
     }
 }

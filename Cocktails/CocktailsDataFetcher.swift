@@ -25,14 +25,16 @@ final class CocktailsDataFetcher {
     
     // MARK: - Public methods
     
-    func randomCocktail() async throws -> [Cocktail] {
+    func randomCocktail() async throws -> Cocktail? {
         
         let url = urlRandomCocktail()
              
-        return try await urlDataTask(url: url)
+        let cocktails = try await urlDataTask(url: url)
+        
+        return cocktails.first
     }
             
-    func cocktailData(query: String) async throws -> [Cocktail] {
+    func searchCocktails(query: String) async throws -> [Cocktail] {
         
         let queryParameters = queryParameters(query: query)
         let url = urlSearchCocktail(queryItems: queryParameters)
