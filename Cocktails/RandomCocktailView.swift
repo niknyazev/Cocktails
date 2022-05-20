@@ -46,6 +46,9 @@ struct RandomCocktailView: View {
                 .padding(.bottom, 20)
             }
             .navigationTitle("Random cocktail")
+            .task {
+                await viewModel.fetchCocktail()
+            }
         }
     }
 }

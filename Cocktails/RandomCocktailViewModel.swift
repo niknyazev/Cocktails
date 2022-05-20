@@ -17,42 +17,32 @@ class RandomCocktailViewModel: ObservableObject {
     
     private var cocktail: Cocktail? = nil
     
+    @MainActor
     func fetchCocktail() async {
+        
         isLoading = true
         
         do {
+            
             let cocktails = try await CocktailsDataFetcher.shared.randomCocktail()
-            guard let cocktail = cocktails.first else {
+            
+            guard let cocktailData = cocktails.first else {
                 return
             }
-            self.cocktail = cocktail
+            name = cocktailData.name ?? ""
+            instructions = cocktailData.instructions ?? ""
+            image = cocktailData.imageData
+            
+            isFavourite = FavouriteCocktailsStorageManager
+                .shared
+                .fetchCocktails()
+                .first { $0.id == self.cocktail?.id ?? "" } != nil
+            
+            isLoading = false
+            
         } catch {
             print(error)
         }
-        
-//        CocktailsDataFetcher.shared.randomCocktail { result in
-//            switch result {
-//            case .success(let cocktails):
-//
-//                guard let cocktail = cocktails.first else {
-//                    return
-//                }
-//
-//                self.cocktail = cocktail
-//                self.name = cocktail.name ?? ""
-//                self.instructions = cocktail.instructions ?? ""
-//                self.isFavourite = true
-//                self.image = cocktail.imageData
-//                self.isLoading = false
-//
-//                self.isFavourite = FavouriteCocktailsStorageManager
-//                    .shared
-//                    .fetchCocktails()
-//                    .first { $0.id == self.cocktail?.id ?? "" } != nil
-//            default:
-//                break
-//            }
-//        }
     }
     
     func saveFavouriteStatus() {

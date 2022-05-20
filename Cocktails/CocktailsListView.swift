@@ -31,7 +31,9 @@ struct CocktailsListView: View {
         }
         .searchable(text: $searchText)
         .onChange(of: searchText) { newValue in
-            viewModel.fetchCocktails(query: newValue)
+            Task {
+                await viewModel.fetchCocktails(query: newValue)
+            }
         }
     }
 }

@@ -54,17 +54,17 @@ final class CocktailsDataFetcher {
         
         let decoder = JSONDecoder()
         
-        guard let result = try? decoder.decode([Cocktail].self, from: data) else {
+        guard let cocktailsData = try? decoder.decode(CocktailsData.self, from: data) else {
             throw NetworkError.decodingError
         }
         
-        return result
+        var result = cocktailsData.cocktails
+
+        for index in 0..<result.count {
+            result[index].imageData = fetchImageData(from: result[index].thumbUrl ?? "")
+        }
         
-//        var result = cocktailsData.cocktails
-//
-//        for index in 0..<result.count {
-//            result[index].imageData = self.fetchImageData(from: result[index].thumbUrl ?? "")
-//        }
+        return result
     }
     
     private func queryParameters(query: String) -> [URLQueryItem] {
