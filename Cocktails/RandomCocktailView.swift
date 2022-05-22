@@ -39,6 +39,7 @@ struct RandomCocktailView: View {
                         } label: {
                             Text("Ingredients")
                         }
+                        .padding()
                         Spacer()
                         HStack {
                             Button("Next") {
@@ -69,6 +70,7 @@ struct RandomCocktailView: View {
                                 Text("Close")
                                     .foregroundColor(.white)
                             }
+                            .padding()
                         }.padding(30)
                     }
                     
@@ -103,6 +105,7 @@ struct CocktailImage: View {
                 .resizable()
                 .frame(width: 200, height: 200, alignment: .center)
                 .cornerRadius(100)
+                .shadow(color: .gray, radius: 3)
             if isLoading {
                 ProgressView()
                     .progressViewStyle(CircularProgressViewStyle(tint: .white))
