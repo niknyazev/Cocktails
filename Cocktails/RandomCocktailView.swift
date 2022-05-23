@@ -55,26 +55,7 @@ struct RandomCocktailView: View {
                         .padding(.bottom, 20)
                 }
                 if showPopUp {
-                    ZStack {
-                        Rectangle()
-                            .cornerRadius(15)
-                            .foregroundColor(.blue)
-                            .padding(30)
-                            .shadow(color: .gray, radius: 5)
-                            .opacity(0.9)
-                        VStack {
-                            Spacer()
-                            Button {
-                                showPopUp.toggle()
-                            } label: {
-                                Text("Close")
-                                    .foregroundColor(.white)
-                            }
-                            .padding()
-                        }.padding(30)
-                    }
-                    
-                        
+                    PopUpView(showPopUp: $showPopUp)
                 }
                 
             }
@@ -126,5 +107,35 @@ struct CocktailImage: View {
             return defaultImage
         }
         return Image(uiImage: image)
+    }
+}
+
+struct PopUpView: View {
+    
+    @Binding var showPopUp: Bool
+    
+    var body: some View {
+        ZStack {
+            Rectangle()
+                .cornerRadius(15)
+                .foregroundColor(.blue)
+                .padding(30)
+                .shadow(color: .gray, radius: 5)
+                .opacity(0.9)
+            VStack {
+                Text("Ingredients")
+                    .font(.title2)
+                    .foregroundColor(.white)
+                    .padding()
+                Spacer()
+                Button {
+                    showPopUp.toggle()
+                } label: {
+                    Text("Close")
+                        .foregroundColor(.white)
+                }
+                .padding()
+            }.padding(30)
+        }
     }
 }
