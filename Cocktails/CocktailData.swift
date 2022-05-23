@@ -13,6 +13,28 @@ struct CocktailsData: Decodable {
     enum CodingKeys: String, CodingKey {
         case cocktails = "drinks"
     }
+    
+    static func getCocktail() -> Cocktail {
+        Cocktail(
+            id: "001",
+            name: "Rum Cola",
+            category: "",
+            glassName: "",
+            imageUrl: nil,
+            thumbUrl: nil,
+            instructions: "Mix rum and cola",
+            ingredient1: "Rum",
+            ingredient2: "Cola",
+            ingredient3: nil,
+            ingredient4: nil,
+            ingredient5: nil,
+            measure1: "0.5l",
+            measure2: "0.5l",
+            measure3: nil,
+            measure4: nil,
+            measure5: nil
+        )
+    }
 }
 
 struct Cocktail: Decodable {
@@ -24,22 +46,28 @@ struct Cocktail: Decodable {
     let thumbUrl: String?
     let instructions: String?
     
-    var ingredient1: String? = nil
-    var ingredient2: String? = nil
-    var ingredient3: String? = nil
-    var ingredient4: String? = nil
-    var ingredient5: String? = nil
+    let ingredient1: String?
+    let ingredient2: String?
+    let ingredient3: String?
+    let ingredient4: String?
+    let ingredient5: String?
     
-    var ingredients: [String] {
+    let measure1: String?
+    let measure2: String?
+    let measure3: String?
+    let measure4: String?
+    let measure5: String?
+    
+    var ingredients: [Ingredient] {
         [
-            ingredient1,
-            ingredient2,
-            ingredient3,
-            ingredient4,
-            ingredient5,
+            Ingredient(name: ingredient1 ?? "", masure: measure1 ?? ""),
+            Ingredient(name: ingredient2 ?? "", masure: measure2 ?? ""),
+            Ingredient(name: ingredient3 ?? "", masure: measure3 ?? ""),
+            Ingredient(name: ingredient4 ?? "", masure: measure4 ?? ""),
+            Ingredient(name: ingredient5 ?? "", masure: measure5 ?? "")
         ]
-        .compactMap {
-            $0
+        .filter {
+            !$0.name.isEmpty
         }
     }
     
@@ -61,5 +89,19 @@ extension Cocktail {
         case ingredient3 = "strIngredient3"
         case ingredient4 = "strIngredient4"
         case ingredient5 = "strIngredient5"
+        
+        case measure1 = "strMeasure1"
+        case measure2 = "strMeasure2"
+        case measure3 = "strMeasure3"
+        case measure4 = "strMeasure4"
+        case measure5 = "strMeasure5"
+        
     }
 }
+
+struct Ingredient: Identifiable {
+    let id = UUID()
+    let name: String
+    let masure: String
+}
+

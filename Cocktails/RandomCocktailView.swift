@@ -128,10 +128,14 @@ struct PopUpView: View {
                     .font(.title2)
                     .foregroundColor(.white)
                     .padding()
-                List(viewModel.ingredients, id: \.self) { ingredient in
-                    Text(ingredient)
-                        .foregroundColor(.white)
-                        .listRowBackground(Color(white: 0, opacity: 0))
+                List(viewModel.ingredients) { ingredient in
+                    HStack {
+                        Text(ingredient.name)
+                        Spacer()
+                        Text(ingredient.masure)
+                    }
+                    .foregroundColor(.white)
+                    .listRowBackground(Color(white: 0, opacity: 0))
                 }
                 .listStyle(.plain)
                 .padding()
