@@ -91,7 +91,7 @@ struct PopUpView: View {
                 .shadow(color: .gray, radius: 5)
                 .opacity(0.95)
             VStack {
-                Text("Ingredients")
+                Text(viewModel.ingredientsTitle)
                     .font(.title2)
                     .foregroundColor(.white)
                     .padding()
@@ -140,15 +140,16 @@ struct CocktailData: View {
                     .tint(.red)
             }
             .offset(x: 100)
-            Text(viewModel.instructions)
-                .frame(width: 300, height: 200, alignment: .topLeading)
-                .padding(.top, 20)
-            Button {
-                showPopUp.toggle()
-            } label: {
-                Text("Ingredients")
+            VStack(alignment: .leading, spacing: 20) {
+                Text(viewModel.instructions)
+                Button {
+                    showPopUp.toggle()
+                } label: {
+                    Text(viewModel.ingredientsTitle)
+                }
             }
-            .padding()
+            .padding(.top, 10)
+            .frame(width: 300, alignment: .leading)
             Spacer()
             Button("Next") {
                 Task {
