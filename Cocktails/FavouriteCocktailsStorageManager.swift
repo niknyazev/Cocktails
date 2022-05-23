@@ -31,7 +31,22 @@ class FavouriteCocktailsStorageManager {
     func saveCocktail(cocktailData: CocktailStorageData) {
         
         var cocktails = fetchCocktails()
+                
+        if (cocktails.first { $0.id == cocktailData.id }) != nil {
+            return
+        }
+        
         cocktails.append(cocktailData)
+        
+        guard let data = try? JSONEncoder().encode(cocktails) else { return }
+        userDefaults.set(data, forKey: key)
+    }
+    
+    func deleteCocktail(id: String) {
+
+        var cocktails = fetchCocktails()
+                
+        cocktails.removeAll { $0.id == id }
         
         guard let data = try? JSONEncoder().encode(cocktails) else { return }
         userDefaults.set(data, forKey: key)
