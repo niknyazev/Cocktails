@@ -122,7 +122,7 @@ struct PopUpView: View {
                 .foregroundColor(.blue)
                 .padding(30)
                 .shadow(color: .gray, radius: 5)
-                .opacity(0.9)
+                .opacity(0.95)
             VStack {
                 Text("Ingredients")
                     .font(.title2)
