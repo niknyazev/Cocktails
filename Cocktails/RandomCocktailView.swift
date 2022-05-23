@@ -55,7 +55,7 @@ struct RandomCocktailView: View {
                         .padding(.bottom, 20)
                 }
                 if showPopUp {
-                    PopUpView(showPopUp: $showPopUp)
+                    PopUpView(showPopUp: $showPopUp, viewModel: viewModel)
                 }
                 
             }
@@ -113,6 +113,7 @@ struct CocktailImage: View {
 struct PopUpView: View {
     
     @Binding var showPopUp: Bool
+    @ObservedObject var viewModel: RandomCocktailViewModel
     
     var body: some View {
         ZStack {
@@ -127,6 +128,13 @@ struct PopUpView: View {
                     .font(.title2)
                     .foregroundColor(.white)
                     .padding()
+                List(viewModel.ingredients, id: \.self) { ingredient in
+                    Text(ingredient)
+                        .foregroundColor(.white)
+                        .listRowBackground(Color(white: 0, opacity: 0))
+                }
+                .listStyle(.plain)
+                .padding()
                 Spacer()
                 Button {
                     showPopUp.toggle()

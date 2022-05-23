@@ -14,6 +14,7 @@ class RandomCocktailViewModel: ObservableObject {
     @Published var instructions: String = ""
     @Published var image: Data? = nil
     @Published var isLoading = false
+    @Published var ingredients: [String] = []
     
     private var cocktail: Cocktail? = nil
     
@@ -32,6 +33,7 @@ class RandomCocktailViewModel: ObservableObject {
             name = cocktailData.name ?? ""
             instructions = cocktailData.instructions ?? ""
             image = cocktailData.imageData
+            ingredients = cocktailData.ingredients
             
             isFavourite = FavouriteCocktailsStorageManager
                 .shared
