@@ -11,57 +11,24 @@ struct RandomCocktailView: View {
     
     @StateObject var viewModel = RandomCocktailViewModel()
     @State private var showPopUp = false
+    @State private var dataFetched = false
     
     var body: some View {
         NavigationView {
             ZStack {
-                VStack {
-
-                        Text(viewModel.name)
-                            .font(.title2)
-                            .frame(height: 50)
-                        CocktailImage(isLoading: viewModel.isLoading, image: viewModel.image)
-                        Button {
-                            viewModel.favoriteButtonPressed()
-                        } label: {
-                            Image(systemName: viewModel.isFavourite ? "bookmark.fill" : "bookmark")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 20)
-                                .tint(.red)
-                        }
-                        .offset(x: 100)
-                        Text(viewModel.instructions)
-                            .frame(width: 300, height: 200, alignment: .topLeading)
-                            .padding(.top, 20)
-                        Button {
-                            showPopUp.toggle()
-                        } label: {
-                            Text("Ingredients")
-                        }
-                        .padding()
-                        Spacer()
-                        HStack {
-                            Button("Next") {
-                                Task {
-                                    await viewModel.fetchCocktail()
-                                }
-                            }
-                            .tint(.white)
-                            .frame(width: 150, height: 50, alignment: .center)
-                            .background(.red)
-                            .cornerRadius(20)
-                        }
-                        .padding(.bottom, 20)
-                }
+                CocktailData(viewModel: viewModel, showPopUp: $showPopUp)
                 if showPopUp {
-                    PopUpView(showPopUp: $showPopUp, viewModel: viewModel)
+                    PopUpView(viewModel: viewModel, showPopUp: $showPopUp)
                 }
                 
             }
             .navigationTitle("Random cocktail")
             .task {
-                await viewModel.fetchCocktail()
+                if !dataFetched {
+                    await viewModel.fetchCocktail()
+                    dataFetched.toggle()
+                }
+                
             }
         }
     }
@@ -112,8 +79,8 @@ struct CocktailImage: View {
 
 struct PopUpView: View {
     
-    @Binding var showPopUp: Bool
     @ObservedObject var viewModel: RandomCocktailViewModel
+    @Binding var showPopUp: Bool
     
     var body: some View {
         ZStack {
@@ -148,6 +115,51 @@ struct PopUpView: View {
                 }
                 .padding()
             }.padding(30)
+        }
+    }
+}
+
+struct CocktailData: View {
+    
+    @ObservedObject var viewModel: RandomCocktailViewModel
+    @Binding var showPopUp: Bool
+    
+    var body: some View {
+        VStack {
+            Text(viewModel.name)
+                .font(.title2)
+                .frame(height: 50)
+            CocktailImage(isLoading: viewModel.isLoading, image: viewModel.image)
+            Button {
+                viewModel.favoriteButtonPressed()
+            } label: {
+                Image(systemName: viewModel.isFavourite ? "bookmark.fill" : "bookmark")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 20)
+                    .tint(.red)
+            }
+            .offset(x: 100)
+            Text(viewModel.instructions)
+                .frame(width: 300, height: 200, alignment: .topLeading)
+                .padding(.top, 20)
+            Button {
+                showPopUp.toggle()
+            } label: {
+                Text("Ingredients")
+            }
+            .padding()
+            Spacer()
+            Button("Next") {
+                Task {
+                    await viewModel.fetchCocktail()
+                }
+            }
+            .tint(.white)
+            .frame(width: 150, height: 50, alignment: .center)
+            .background(.red)
+            .cornerRadius(20)
+            .padding(.bottom, 20)
         }
     }
 }
