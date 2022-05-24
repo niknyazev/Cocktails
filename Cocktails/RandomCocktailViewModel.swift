@@ -9,13 +9,8 @@ import Foundation
 
 class RandomCocktailViewModel: ObservableObject {
     
-    @Published var name: String = ""
-    @Published var isFavourite: Bool = false
-    @Published var instructions: String = ""
-    @Published var image: Data? = nil
     @Published var isLoading = false
-    @Published var ingredients: [Ingredient] = []
-    @Published var ingredientsTitle: String = ""
+    @Published var cocktailDetails: CocktailDetailsViewModel = CocktailDetailsViewModel(cocktail: CocktailsData.getCocktail()) // TODO: Remove
     
     private var cocktail: Cocktail? = nil
     
@@ -32,16 +27,12 @@ class RandomCocktailViewModel: ObservableObject {
                 return
             }
             
-            name = cocktail.name ?? ""
-            instructions = cocktail.instructions ?? ""
-            image = cocktail.imageData
-            ingredients = cocktail.ingredients
-            ingredientsTitle = "Ingredients (\(ingredients.count))"
+            cocktailDetails = CocktailDetailsViewModel(cocktail: cocktail)
             
-            isFavourite = FavouriteCocktailsStorageManager
-                .shared
-                .fetchCocktails()
-                .first { $0.id == self.cocktail?.id ?? "" } != nil
+//            isFavourite = FavouriteCocktailsStorageManager
+//                .shared
+//                .fetchCocktails()
+//                .first { $0.id == self.cocktail?.id ?? "" } != nil
             
             isLoading = false
             
@@ -50,15 +41,15 @@ class RandomCocktailViewModel: ObservableObject {
         }
     }
         
-    func favoriteButtonPressed() {
-        isFavourite.toggle()
-        
-        if isFavourite {
-            saveFavouriteStatus()
-        } else {
-            removeFavouriteStatus()
-        }
-    }
+//    func favoriteButtonPressed() {
+//        isFavourite.toggle()
+//
+//        if isFavourite {
+//            saveFavouriteStatus()
+//        } else {
+//            removeFavouriteStatus()
+//        }
+//    }
     
     func saveFavouriteStatus() {
         

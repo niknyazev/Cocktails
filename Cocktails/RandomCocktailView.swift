@@ -15,7 +15,7 @@ struct RandomCocktailView: View {
     var body: some View {
         NavigationView {
             VStack {
-                CocktailData(viewModel: viewModel)
+                CocktailData(viewModel: viewModel.cocktailDetails)
                 Button("Next") {
                     Task {
                         await viewModel.fetchCocktail()
@@ -84,7 +84,7 @@ struct CocktailImage: View {
 
 struct PopUpView: View {
     
-    @ObservedObject var viewModel: RandomCocktailViewModel
+    var viewModel: CocktailDetailsViewModel
     @Binding var showPopUp: Bool
     
     var body: some View {
@@ -126,7 +126,7 @@ struct PopUpView: View {
 
 struct CocktailData: View {
     
-    @ObservedObject var viewModel: RandomCocktailViewModel
+    var viewModel: CocktailDetailsViewModel
     @State private var showPopUp = false
     
     var body: some View {
@@ -141,7 +141,7 @@ struct CocktailData: View {
 
 struct CocktailDescription: View {
     
-    @ObservedObject var viewModel: RandomCocktailViewModel
+    var viewModel: CocktailDetailsViewModel
     @Binding var showPopUp: Bool
     
     var body: some View {
@@ -149,7 +149,7 @@ struct CocktailDescription: View {
             Text(viewModel.name)
                 .font(.title2)
                 .frame(height: 50)
-            CocktailImage(isLoading: viewModel.isLoading, image: viewModel.image)
+            CocktailImage(isLoading: false, image: viewModel.image)
             Button {
                 viewModel.favoriteButtonPressed()
             } label: {

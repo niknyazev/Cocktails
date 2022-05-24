@@ -76,6 +76,7 @@ struct Cocktail: Decodable {
 
 extension Cocktail {
     enum CodingKeys: String, CodingKey {
+        
         case name = "strDrink"
         case category = "strCategory"
         case glassName = "strGlass"
