@@ -10,17 +10,22 @@ import SwiftUI
 struct RandomCocktailView: View {
     
     @StateObject var viewModel = RandomCocktailViewModel()
-    @State private var showPopUp = false
     @State private var dataFetched = false
     
     var body: some View {
         NavigationView {
-            ZStack {
-                CocktailData(viewModel: viewModel, showPopUp: $showPopUp)
-                if showPopUp {
-                    PopUpView(viewModel: viewModel, showPopUp: $showPopUp)
+            VStack {
+                CocktailData(viewModel: viewModel)
+                Button("Next") {
+                    Task {
+                        await viewModel.fetchCocktail()
+                    }
                 }
-                
+                .tint(.white)
+                .frame(width: 150, height: 50, alignment: .center)
+                .background(.red)
+                .cornerRadius(20)
+                .padding(.bottom, 20)
             }
             .navigationTitle("Random cocktail")
             .task {
@@ -122,6 +127,21 @@ struct PopUpView: View {
 struct CocktailData: View {
     
     @ObservedObject var viewModel: RandomCocktailViewModel
+    @State private var showPopUp = false
+    
+    var body: some View {
+        ZStack {
+            CocktailDescription(viewModel: viewModel, showPopUp: $showPopUp)
+            if showPopUp {
+                PopUpView(viewModel: viewModel, showPopUp: $showPopUp)
+            }
+        }
+    }
+}
+
+struct CocktailDescription: View {
+    
+    @ObservedObject var viewModel: RandomCocktailViewModel
     @Binding var showPopUp: Bool
     
     var body: some View {
@@ -151,16 +171,6 @@ struct CocktailData: View {
             .padding(.top, 10)
             .frame(width: 300, alignment: .leading)
             Spacer()
-            Button("Next") {
-                Task {
-                    await viewModel.fetchCocktail()
-                }
-            }
-            .tint(.white)
-            .frame(width: 150, height: 50, alignment: .center)
-            .background(.red)
-            .cornerRadius(20)
-            .padding(.bottom, 20)
         }
     }
 }
