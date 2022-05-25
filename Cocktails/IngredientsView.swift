@@ -9,7 +9,8 @@ import SwiftUI
 
 struct IngredientsView: View {
     
-    var viewModel: CocktailDetailsViewModel
+    let viewModel: CocktailDetailsViewModel
+    
     @Binding var showPopUp: Bool
     
     var body: some View {
