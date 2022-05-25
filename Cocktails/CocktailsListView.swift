@@ -21,7 +21,9 @@ struct CocktailsListView: View {
                         .foregroundColor(.gray)
                 } else {
                     List(viewModel.cocktails) { cocktail in
-                        NavigationLink(destination: CocktailDetailsView(viewModel: cocktail)) {
+                        NavigationLink(
+                            destination: CocktailDetailsView(viewModel: cocktail)
+                        ) {
                             CocktailRowView(viewModel: cocktail)
                         }
                     }
