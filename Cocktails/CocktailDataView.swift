@@ -10,11 +10,17 @@ import SwiftUI
 struct CocktailDataView: View {
     
     var viewModel: CocktailDetailsViewModel
+    var isLoading: Bool
+    
     @State private var showPopUp = false
     
     var body: some View {
         ZStack {
-            CocktailDescription(viewModel: viewModel, showPopUp: $showPopUp)
+            CocktailDescription(
+                viewModel: viewModel,
+                isLoading: isLoading,
+                showPopUp: $showPopUp
+            )
             if showPopUp {
                 IngredientsView(viewModel: viewModel, showPopUp: $showPopUp)
             }
@@ -60,6 +66,7 @@ struct CocktailImage: View {
 struct CocktailDescription: View {
     
     var viewModel: CocktailDetailsViewModel
+    var isLoading: Bool
     @Binding var showPopUp: Bool
     
     var body: some View {
@@ -67,7 +74,7 @@ struct CocktailDescription: View {
             Text(viewModel.name)
                 .font(.title2)
                 .frame(height: 50)
-            CocktailImage(isLoading: false, image: viewModel.image)
+            CocktailImage(isLoading: isLoading, image: viewModel.image)
             Button {
                 viewModel.favoriteButtonPressed()
             } label: {
@@ -95,9 +102,11 @@ struct CocktailDescription: View {
 
 struct CocktailDataView_Previews: PreviewProvider {
     static var previews: some View {
-        CocktailDataView(viewModel: CocktailDetailsViewModel(
+        CocktailDataView(
+            viewModel: CocktailDetailsViewModel(
                 cocktail: CocktailsData.getCocktail()
-            )
+            ),
+            isLoading: false
         )
     }
 }

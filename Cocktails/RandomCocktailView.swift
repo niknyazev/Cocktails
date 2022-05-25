@@ -15,7 +15,10 @@ struct RandomCocktailView: View {
     var body: some View {
         NavigationView {
             VStack {
-                CocktailDataView(viewModel: viewModel.cocktailDetails)
+                CocktailDataView(
+                    viewModel: viewModel.cocktailDetails,
+                    isLoading: viewModel.isLoading
+                )
                 Button("Next") {
                     Task {
                         await viewModel.fetchCocktail()
