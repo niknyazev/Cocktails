@@ -83,10 +83,8 @@
 		011942CD2819B05200489771 /* Cocktails */ = {
 			isa = PBXGroup;
 			children = (
-				01F0043C283E2B9100964E8D /* CocktailData */,
-				01F00439283E29D900964E8D /* Ingredients */,
 				011942E328206A7D00489771 /* Managers */,
-				011942E228206A6500489771 /* Models */,
+				01F0043C283E2B9100964E8D /* CocktailData */,
 				01F6ADB62823FA780057DB1F /* RandomCocktail */,
 				017A891428339807001FF45B /* CocktailDetails */,
 				019ED77B282E9C9F0052AE40 /* FavouriteCocktails */,
@@ -119,6 +117,7 @@
 		011942E328206A7D00489771 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				011942E228206A6500489771 /* Models */,
 				011942DE281C5BE400489771 /* CocktailsDataFetcher.swift */,
 				011942E0281C647800489771 /* JSONWorker.swift */,
 				017A891E2833BA22001FF45B /* FavouriteCocktailsStorageManager.swift */,
@@ -162,18 +161,11 @@
 			name = FavouriteCocktails;
 			sourceTree = "<group>";
 		};
-		01F00439283E29D900964E8D /* Ingredients */ = {
-			isa = PBXGroup;
-			children = (
-				01F00437283E29D000964E8D /* IngredientsView.swift */,
-			);
-			name = Ingredients;
-			sourceTree = "<group>";
-		};
 		01F0043C283E2B9100964E8D /* CocktailData */ = {
 			isa = PBXGroup;
 			children = (
 				01F0043A283E2B7E00964E8D /* CocktailDataView.swift */,
+				01F00437283E29D000964E8D /* IngredientsView.swift */,
 			);
 			name = CocktailData;
 			sourceTree = "<group>";
