@@ -56,7 +56,7 @@ final class CocktailsDataFetcher {
         
         let decoder = JSONDecoder()
         
-        guard let cocktailsData = try? decoder.decode(CocktailsData.self, from: data) else {
+        guard let cocktailsData = try? decoder.decode(CocktailsNetworkData.self, from: data) else {
             throw NetworkError.decodingError
         }
         
