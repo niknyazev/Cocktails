@@ -8,36 +8,17 @@
 import Foundation
 
 struct CocktailsData: Decodable {
-    let cocktails: [Cocktail]
+    
+    let cocktails: [CocktailNetworkData]
     
     enum CodingKeys: String, CodingKey {
         case cocktails = "drinks"
     }
     
-    static func getCocktail() -> Cocktail {
-        Cocktail(
-            id: "001",
-            name: "Rum Cola",
-            category: "",
-            glassName: "",
-            imageUrl: nil,
-            thumbUrl: nil,
-            instructions: "Mix rum and cola",
-            ingredient1: "Rum",
-            ingredient2: "Cola",
-            ingredient3: nil,
-            ingredient4: nil,
-            ingredient5: nil,
-            measure1: "0.5l",
-            measure2: "0.5l",
-            measure3: nil,
-            measure4: nil,
-            measure5: nil
-        )
-    }
 }
 
-struct Cocktail: Codable, Identifiable {
+struct CocktailNetworkData: Decodable {
+    
     let id: String
     let name: String?
     let category: String?
@@ -70,11 +51,9 @@ struct Cocktail: Codable, Identifiable {
             !$0.name.isEmpty
         }
     }
-    
-    var imageData: Data?
 }
 
-extension Cocktail {
+extension CocktailNetworkData {
     enum CodingKeys: String, CodingKey {
         
         case name = "strDrink"
@@ -100,8 +79,32 @@ extension Cocktail {
     }
 }
 
-struct Ingredient: Identifiable {
-    let id = UUID()
+struct Cocktail: Identifiable, Codable {
+    
+    let id: String
+    let name: String?
+    let category: String?
+    let glassName: String?
+    let instructions: String?
+    let ingredients: [Ingredient]
+    let imageData: Data?
+    
+    static func getCocktail() -> Cocktail {
+        Cocktail(
+            id: "001",
+            name: "Rum Cola",
+            category: "",
+            glassName: "",
+            instructions: "Mix rum and cola",
+            ingredients: [],
+            imageData: nil
+        )
+    }
+    
+}
+
+struct Ingredient: Identifiable, Codable {
+    var id = UUID()
     let name: String
     let masure: String
 }

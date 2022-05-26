@@ -21,7 +21,7 @@ struct CocktailDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         CocktailDetailsView(
             viewModel: CocktailDetailsViewModel(
-                cocktail: CocktailsData.getCocktail()
+                cocktail: Cocktail.getCocktail()
             )
         )
     }

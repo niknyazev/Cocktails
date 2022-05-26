@@ -54,7 +54,7 @@ struct CocktailRowView_Previews: PreviewProvider {
     static var previews: some View {
         CocktailRowView(
             viewModel: CocktailDetailsViewModel(
-                cocktail: CocktailsData.getCocktail()
+                cocktail: Cocktail.getCocktail()
             )
         )
     }

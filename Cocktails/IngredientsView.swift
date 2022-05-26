@@ -55,7 +55,7 @@ struct IngredientsView_Previews: PreviewProvider {
     static var previews: some View {
         IngredientsView(
             viewModel: CocktailDetailsViewModel(
-                cocktail: CocktailsData.getCocktail()
+                cocktail: Cocktail.getCocktail()
             ),
             showPopUp: .constant(true)
         )

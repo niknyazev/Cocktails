@@ -60,10 +60,21 @@ final class CocktailsDataFetcher {
             throw NetworkError.decodingError
         }
         
-        var result = cocktailsData.cocktails
+        var result: [Cocktail] = []
 
-        for index in 0..<result.count {
-            result[index].imageData = fetchImageData(from: result[index].thumbUrl ?? "")
+        for currentCocktail in cocktailsData.cocktails {
+            
+            let cocktail = Cocktail(
+                id: currentCocktail.id,
+                name: currentCocktail.name,
+                category: currentCocktail.category,
+                glassName: currentCocktail.glassName,
+                instructions: currentCocktail.instructions,
+                ingredients: currentCocktail.ingredients,
+                imageData: fetchImageData(from: currentCocktail.thumbUrl ?? "")
+            )
+            
+            result.append(cocktail)
         }
         
         return result

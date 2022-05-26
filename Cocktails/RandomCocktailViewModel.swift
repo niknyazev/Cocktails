@@ -10,7 +10,7 @@ import Foundation
 class RandomCocktailViewModel: ObservableObject {
     
     @Published var isLoading = false
-    @Published var cocktailDetails: CocktailDetailsViewModel = CocktailDetailsViewModel(cocktail: CocktailsData.getCocktail()) // TODO: Remove
+    @Published var cocktailDetails: CocktailDetailsViewModel = CocktailDetailsViewModel(cocktail: Cocktail.getCocktail()) // TODO: Remove
     
     private var cocktail: Cocktail? = nil
     

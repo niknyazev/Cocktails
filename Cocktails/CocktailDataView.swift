@@ -105,7 +105,7 @@ struct CocktailDataView_Previews: PreviewProvider {
     static var previews: some View {
         CocktailDataView(
             viewModel: CocktailDetailsViewModel(
-                cocktail: CocktailsData.getCocktail()
+                cocktail: Cocktail.getCocktail()
             ),
             isLoading: false
         )
