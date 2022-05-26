@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CocktailDataView: View {
     
-    let viewModel: CocktailDetailsViewModel
+    @ObservedObject var viewModel: CocktailDetailsViewModel
     let isLoading: Bool
     
     @State private var showPopUp = false
@@ -65,7 +65,7 @@ struct CocktailImage: View {
 
 struct CocktailDescription: View {
     
-    let viewModel: CocktailDetailsViewModel
+    @ObservedObject var viewModel: CocktailDetailsViewModel
     let isLoading: Bool
     
     @Binding var showPopUp: Bool

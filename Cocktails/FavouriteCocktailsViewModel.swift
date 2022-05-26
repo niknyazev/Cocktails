@@ -9,14 +9,21 @@ import Foundation
 
 class FavouriteCocktailsViewModel: ObservableObject {
     
-    @Published var cocktails: [CocktailStorageData]!
+    @Published var cocktails: [CocktailDetailsViewModel] = []
     
     init() {
         updateFavorite()
     }
     
     func updateFavorite() {
-        cocktails = FavouriteCocktailsStorageManager.shared.fetchCocktails()
+        let cocktailsData = FavouriteCocktailsStorageManager.shared.fetchCocktails()
+        
+        cocktails.removeAll()
+        
+        cocktailsData.forEach {
+            self.cocktails.append(CocktailDetailsViewModel(cocktail: $0))
+        }
+        
     }
     
 }

@@ -37,7 +37,7 @@ struct CocktailsData: Decodable {
     }
 }
 
-struct Cocktail: Decodable {
+struct Cocktail: Codable, Identifiable {
     let id: String
     let name: String?
     let category: String?

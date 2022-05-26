@@ -7,14 +7,6 @@
 
 import Foundation
 
-
-struct CocktailStorageData: Codable, Identifiable {
-    
-    let name: String
-    let id: String
-    let image: Data?
-}
-
 class FavouriteCocktailsStorageManager {
     
     // MARK: - Properties
@@ -28,7 +20,7 @@ class FavouriteCocktailsStorageManager {
     
     // MARK: - Public methods
     
-    func saveCocktail(cocktailData: CocktailStorageData) {
+    func saveCocktail(cocktailData: Cocktail) {
         
         var cocktails = fetchCocktails()
                 
@@ -52,13 +44,13 @@ class FavouriteCocktailsStorageManager {
         userDefaults.set(data, forKey: key)
     }
     
-    func fetchCocktails() -> [CocktailStorageData] {
+    func fetchCocktails() -> [Cocktail] {
         
         guard let data = userDefaults.data(forKey: key) else {
             return []
         }
         
-        guard let result = try? JSONDecoder().decode([CocktailStorageData].self, from: data) else {
+        guard let result = try? JSONDecoder().decode([Cocktail].self, from: data) else {
             return []
         }
         

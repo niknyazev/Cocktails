@@ -20,8 +20,10 @@ protocol CocktailDetailsProtocol {
     
 }
 
-class CocktailDetailsViewModel: Identifiable, CocktailDetailsProtocol {
+class CocktailDetailsViewModel: Identifiable, CocktailDetailsProtocol, ObservableObject {
 
+    @Published var isFavourite: Bool
+    
     var name: String {
         cocktail.name ?? ""
     }
@@ -41,16 +43,36 @@ class CocktailDetailsViewModel: Identifiable, CocktailDetailsProtocol {
     var ingredients: [Ingredient] {
         cocktail.ingredients
     }
-    
-    func favoriteButtonPressed() {
-        print("Pressed")
-    }
-    
-    var isFavourite = false
-    
+   
     private let cocktail: Cocktail
     
     init(cocktail: Cocktail) {
+       
         self.cocktail = cocktail
+        
+        isFavourite = FavouriteCocktailsStorageManager
+            .shared
+            .fetchCocktails()
+            .first { $0.id == cocktail.id} != nil
     }
+    
+    func favoriteButtonPressed() {
+        
+        if isFavourite {
+            removeFavouriteStatus()
+        } else {
+            saveFavouriteStatus()
+        }
+        
+        isFavourite.toggle()
+    }
+    
+    private func saveFavouriteStatus() {
+        FavouriteCocktailsStorageManager.shared.saveCocktail(cocktailData: cocktail)
+    }
+    
+    private func removeFavouriteStatus() {
+        FavouriteCocktailsStorageManager.shared.deleteCocktail(id: cocktail.id)
+    }
+    
 }

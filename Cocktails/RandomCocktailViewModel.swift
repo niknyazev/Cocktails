@@ -29,11 +29,6 @@ class RandomCocktailViewModel: ObservableObject {
             
             cocktailDetails = CocktailDetailsViewModel(cocktail: cocktail)
             
-//            isFavourite = FavouriteCocktailsStorageManager
-//                .shared
-//                .fetchCocktails()
-//                .first { $0.id == self.cocktail?.id ?? "" } != nil
-            
             isLoading = false
             
         } catch {
@@ -41,33 +36,4 @@ class RandomCocktailViewModel: ObservableObject {
         }
     }
         
-//    func favoriteButtonPressed() {
-//        isFavourite.toggle()
-//
-//        if isFavourite {
-//            saveFavouriteStatus()
-//        } else {
-//            removeFavouriteStatus()
-//        }
-//    }
-    
-    func saveFavouriteStatus() {
-        
-        guard let cocktail = cocktail else { return }
-        
-        FavouriteCocktailsStorageManager.shared.saveCocktail(
-            cocktailData: CocktailStorageData(
-                name: cocktail.name ?? "",
-                id: cocktail.id,
-                image: cocktail.imageData
-            )
-        )
-    }
-    
-    func removeFavouriteStatus() {
-
-        guard let cocktail = cocktail else { return }
-        
-        FavouriteCocktailsStorageManager.shared.deleteCocktail(id: cocktail.id)
-    }
 }
