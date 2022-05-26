@@ -15,16 +15,20 @@ struct FavouriteCocktailsView: View {
         NavigationView {
             Group {
                 List(viewModel.cocktails) { cocktail in
-                    HStack {
-                        getImage(data: cocktail.image)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 50)
-                            .cornerRadius(25)
-                        Text(cocktail.name)
-                            .offset(x: 10)
+                    NavigationLink(
+                        destination: CocktailDetailsView(viewModel: cocktail)
+                    ) {
+                        HStack {
+                            getImage(data: cocktail.image)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 50)
+                                .cornerRadius(25)
+                            Text(cocktail.name)
+                                .offset(x: 10)
+                        }
+                        .padding(10)
                     }
-                    .padding(10)
                 }
             }
             .navigationTitle("Favorite cocktails")
