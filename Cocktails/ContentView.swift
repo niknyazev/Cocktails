@@ -13,18 +13,18 @@ struct ContentView: View {
         TabView {
             RandomCocktailView()
                 .tabItem {
-                    Image(systemName: "circle")
+                    Image(systemName: "play.circle")
                     Text("Random")
                 }
             CocktailsListView()
                 .tabItem {
-                    Image(systemName: "circle")
-                    Text("Cocktails")
+                    Image(systemName: "magnifyingglass.circle")
+                    Text("Search")
                 }
             FavouriteCocktailsView()
                 .tabItem {
-                    Image(systemName: "circle")
-                    Text("Favourite")
+                    Image(systemName: "bookmark.circle")
+                    Text("Favorite")
                 }
         }
     }
