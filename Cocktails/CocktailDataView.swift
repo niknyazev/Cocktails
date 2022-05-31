@@ -43,7 +43,7 @@ struct CocktailImage: View {
             if isLoading {
                 ProgressView()
                     .progressViewStyle(CircularProgressViewStyle(tint: .white))
-                    .scaleEffect(1)
+                    .scaleEffect(1.5)
             }
         }
     }

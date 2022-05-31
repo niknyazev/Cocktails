@@ -24,7 +24,7 @@ struct CocktailRowView: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 15)
-                .foregroundColor(.red)
+                .foregroundColor(viewModel.isFavorite ? .red : .gray)
                 .padding()
         }
     }
