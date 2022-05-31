@@ -1,5 +1,5 @@
 //
-//  FavouriteCocktailsView.swift
+//  FavoriteCocktailsView.swift
 //  Cocktails
 //
 //  Created by Николай on 04.05.2022.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct FavouriteCocktailsView: View {
+struct FavoriteCocktailsView: View {
     
-    @StateObject private var viewModel = FavouriteCocktailsViewModel()
+    @StateObject private var viewModel = FavoriteCocktailsViewModel()
     
     var body: some View {
         NavigationView {
@@ -53,8 +53,8 @@ struct FavouriteCocktailsView: View {
     
 }
 
-struct FavouriteCocktails_Previews: PreviewProvider {
+struct FavoriteCocktails_Previews: PreviewProvider {
     static var previews: some View {
-        FavouriteCocktailsView()
+        FavoriteCocktailsView()
     }
 }

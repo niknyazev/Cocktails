@@ -1,5 +1,5 @@
 //
-//  FavouriteCocktailsViewModel.swift
+//  FavoriteCocktailsViewModel.swift
 //  Cocktails
 //
 //  Created by Николай on 13.05.2022.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class FavouriteCocktailsViewModel: ObservableObject {
+class FavoriteCocktailsViewModel: ObservableObject {
     
     @Published var cocktails: [CocktailDetailsViewModel] = []
     
@@ -16,7 +16,7 @@ class FavouriteCocktailsViewModel: ObservableObject {
     }
     
     func updateFavorite() {
-        let cocktailsData = FavouriteCocktailsStorageManager.shared.fetchCocktails()
+        let cocktailsData = FavoriteCocktailsStorageManager.shared.fetchCocktails()
         
         cocktails.removeAll()
         

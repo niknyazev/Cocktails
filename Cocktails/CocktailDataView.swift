@@ -79,7 +79,7 @@ struct CocktailDescription: View {
             Button {
                 viewModel.favoriteButtonPressed()
             } label: {
-                Image(systemName: viewModel.isFavourite ? "bookmark.fill" : "bookmark")
+                Image(systemName: viewModel.isFavorite ? "bookmark.fill" : "bookmark")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 20)

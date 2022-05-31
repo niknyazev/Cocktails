@@ -1,5 +1,5 @@
 //
-//  FavouriteCocktailsStorageManager.swift
+//  FavoriteCocktailsStorageManager.swift
 //  Cocktails
 //
 //  Created by Николай on 17.05.2022.
@@ -7,14 +7,14 @@
 
 import Foundation
 
-class FavouriteCocktailsStorageManager {
+class FavoriteCocktailsStorageManager {
     
     // MARK: - Properties
     
-    static let shared = FavouriteCocktailsStorageManager()
+    static let shared = FavoriteCocktailsStorageManager()
     
     private let userDefaults = UserDefaults.standard
-    private let key = "favouriteCocktails"
+    private let key = "favoriteCocktails"
     
     private init() {}
     

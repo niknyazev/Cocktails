@@ -21,7 +21,7 @@ struct ContentView: View {
                     Image(systemName: "magnifyingglass.circle")
                     Text("Search")
                 }
-            FavouriteCocktailsView()
+            FavoriteCocktailsView()
                 .tabItem {
                     Image(systemName: "bookmark.circle")
                     Text("Favorite")
