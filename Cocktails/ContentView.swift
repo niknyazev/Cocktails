@@ -14,19 +14,16 @@ struct ContentView: View {
             RandomCocktailView()
                 .tabItem {
                     Image(systemName: "play.circle")
-                        .environment(\.symbolVariants, .none)
                     Text("Random")
                 }
             CocktailsListView()
                 .tabItem {
                     Image(systemName: "magnifyingglass.circle")
-                        .environment(\.symbolVariants, .none)
                     Text("Search")
                 }
             FavouriteCocktailsView()
                 .tabItem {
                     Image(systemName: "bookmark.circle")
-                        .environment(\.symbolVariants, .none)
                     Text("Favorite")
                 }
         }
