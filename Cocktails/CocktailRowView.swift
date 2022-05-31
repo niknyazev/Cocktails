@@ -20,16 +20,12 @@ struct CocktailRowView: View {
                 .cornerRadius(25)
             Text(viewModel.name)
             Spacer()
-            Button {
-                print("Its toggle")
-            } label: {
-                Image(systemName: "bookmark")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 15)
-                    .tint(.red)
-            }
-            .offset(x: -10)
+            Image(systemName: viewModel.isFavorite ? "bookmark.fill" : "bookmark")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 15)
+                .foregroundColor(.red)
+                .padding()
         }
     }
     
