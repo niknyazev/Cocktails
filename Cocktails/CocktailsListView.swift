@@ -20,11 +20,17 @@ struct CocktailsListView: View {
                         .font(.title2)
                         .foregroundColor(.gray)
                 } else {
-                    List(viewModel.cocktails) { cocktail in
-                        NavigationLink(
-                            destination: CocktailDetailsView(viewModel: cocktail)
-                        ) {
-                            CocktailRowView(viewModel: cocktail)
+                    if viewModel.isLoading {
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle(tint: .gray))
+                            .scaleEffect(1.5)
+                    } else {
+                        List(viewModel.cocktails) { cocktail in
+                            NavigationLink(
+                                destination: CocktailDetailsView(viewModel: cocktail)
+                            ) {
+                                CocktailRowView(viewModel: cocktail)
+                            }
                         }
                     }
                 }

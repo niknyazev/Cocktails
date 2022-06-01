@@ -10,13 +10,16 @@ import Foundation
 class CocktailsListViewModel: ObservableObject {
     
     @Published var cocktails: [CocktailDetailsViewModel] = []
+    @Published var isLoading = false
     
     @MainActor
     func fetchCocktails(query: String) async {
        
+        isLoading = true
         cocktails.removeAll()
         
         let cocktailsData = try? await CocktailsDataFetcher.shared.searchCocktails(query: query)
+        isLoading = false
         
         guard let cocktailsData = cocktailsData else {
             return
