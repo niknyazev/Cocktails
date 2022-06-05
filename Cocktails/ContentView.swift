@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-        
+     
     var body: some View {
         TabView {
             RandomCocktailView()
@@ -27,6 +27,34 @@ struct ContentView: View {
                     Text("Favorite")
                 }
         }
+        .onAppear() {
+            setupBars()
+        }
+    }
+    
+    private func setupBars() {
+        
+        // Tab bar
+        
+        let appearanceTabBar = UITabBar.appearance()
+        
+        appearanceTabBar.backgroundColor = .red
+        appearanceTabBar.unselectedItemTintColor = .white
+
+        // Navigation bar
+        
+        let textColor: [NSAttributedString.Key : Any] = [.foregroundColor: UIColor.white]
+        
+        let coloredAppearance = UINavigationBarAppearance()
+        coloredAppearance.backgroundColor = .red
+        coloredAppearance.titleTextAttributes = textColor
+        coloredAppearance.largeTitleTextAttributes = textColor
+
+        let appearanceNavigationBar = UINavigationBar.appearance()
+            
+        appearanceNavigationBar.standardAppearance = coloredAppearance
+        appearanceNavigationBar.compactAppearance = coloredAppearance
+        appearanceNavigationBar.scrollEdgeAppearance = coloredAppearance        
     }
 }
 
