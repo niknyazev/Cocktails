@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct CocktailsApp: App {
+    
+    @StateObject var colors = Colors()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(colors)
         }
     }
 }

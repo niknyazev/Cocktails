@@ -11,6 +11,7 @@ struct RandomCocktailView: View {
     
     @StateObject var viewModel = RandomCocktailViewModel()
     @State private var dataFetched = false
+    @EnvironmentObject private var colors: Colors
     
     var body: some View {
         NavigationView {
@@ -26,7 +27,7 @@ struct RandomCocktailView: View {
                 }
                 .tint(.white)
                 .frame(width: 150, height: 50, alignment: .center)
-                .background(.red)
+                .background(Color(colors.buttonColor))
                 .cornerRadius(20)
                 .padding(.bottom, 20)
             }

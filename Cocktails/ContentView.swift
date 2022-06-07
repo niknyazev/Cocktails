@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
-     
+    
+    @EnvironmentObject private var colors: Colors
+    
     var body: some View {
         TabView {
             RandomCocktailView()
@@ -28,11 +30,8 @@ struct ContentView: View {
                 }
         }
         // TODO: move color to class
-        .accentColor(Color(
-            red: 251/255,
-            green: 86/255,
-            blue: 7/255
-        ))
+        .accentColor(Color(colors.buttonColor))
+        .environmentObject(colors)
         .onAppear() {
             setupBars()
         }
@@ -42,12 +41,7 @@ struct ContentView: View {
         
         // TODO: move to class
         
-        let buttonColor = UIColor(
-            red: 251/255,
-            green: 86/255,
-            blue: 7/255,
-            alpha: 1
-        )
+        let buttonColor = colors.buttonColor
                 
         let textColor: [NSAttributedString.Key : Any] = [.foregroundColor: UIColor.white]
         

@@ -27,6 +27,7 @@
 		01F6ADB32822E39F0057DB1F /* CocktailsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F6ADB22822E39F0057DB1F /* CocktailsListView.swift */; };
 		01F6ADB52822E3D30057DB1F /* FavouriteCocktailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F6ADB42822E3D30057DB1F /* FavouriteCocktailsView.swift */; };
 		01F6ADB82823FAA30057DB1F /* RandomCocktailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F6ADB72823FAA30057DB1F /* RandomCocktailViewModel.swift */; };
+		01FF5FD2284FC744004807C9 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FF5FD1284FC744004807C9 /* Colors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		01F6ADB22822E39F0057DB1F /* CocktailsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailsListView.swift; sourceTree = "<group>"; };
 		01F6ADB42822E3D30057DB1F /* FavouriteCocktailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteCocktailsView.swift; sourceTree = "<group>"; };
 		01F6ADB72823FAA30057DB1F /* RandomCocktailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomCocktailViewModel.swift; sourceTree = "<group>"; };
+		01FF5FD1284FC744004807C9 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 				011942DE281C5BE400489771 /* CocktailsDataFetcher.swift */,
 				011942E0281C647800489771 /* JSONWorker.swift */,
 				017A891E2833BA22001FF45B /* FavouriteCocktailsStorageManager.swift */,
+				01FF5FD1284FC744004807C9 /* Colors.swift */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 				017A891828339854001FF45B /* CocktailDetailsView.swift in Sources */,
 				01F00438283E29D100964E8D /* IngredientsView.swift in Sources */,
 				01F0043E283FE08400964E8D /* Cocktail.swift in Sources */,
+				01FF5FD2284FC744004807C9 /* Colors.swift in Sources */,
 				01F6ADB52822E3D30057DB1F /* FavouriteCocktailsView.swift in Sources */,
 				019ED77A282E9BFE0052AE40 /* CocktailsListViewModel.swift in Sources */,
 				01F6ADB82823FAA30057DB1F /* RandomCocktailViewModel.swift in Sources */,
