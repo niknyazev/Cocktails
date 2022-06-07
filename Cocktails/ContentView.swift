@@ -27,6 +27,12 @@ struct ContentView: View {
                     Text("Favorite")
                 }
         }
+        // TODO: move color to class
+        .accentColor(Color(
+            red: 251/255,
+            green: 86/255,
+            blue: 7/255
+        ))
         .onAppear() {
             setupBars()
         }
@@ -34,19 +40,19 @@ struct ContentView: View {
     
     private func setupBars() {
         
-        // Tab bar
+        // TODO: move to class
         
-        let appearanceTabBar = UITabBar.appearance()
-        
-        appearanceTabBar.backgroundColor = .red
-        appearanceTabBar.unselectedItemTintColor = .white
-
-        // Navigation bar
-        
+        let buttonColor = UIColor(
+            red: 251/255,
+            green: 86/255,
+            blue: 7/255,
+            alpha: 1
+        )
+                
         let textColor: [NSAttributedString.Key : Any] = [.foregroundColor: UIColor.white]
         
         let coloredAppearance = UINavigationBarAppearance()
-        coloredAppearance.backgroundColor = .red
+        coloredAppearance.backgroundColor = buttonColor
         coloredAppearance.titleTextAttributes = textColor
         coloredAppearance.largeTitleTextAttributes = textColor
 

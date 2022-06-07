@@ -72,14 +72,12 @@ struct CocktailDescription: View {
     
     var body: some View {
         VStack {
-            Text(viewModel.name)
-                .font(.title2)
-                .frame(height: 50)
             CocktailImage(isLoading: isLoading, image: viewModel.image)
+                .padding(.top, 30)
             Button {
                 viewModel.favoriteButtonPressed()
             } label: {
-                Image(systemName: viewModel.isFavorite ? "bookmark.fill" : "bookmark")
+                Image(systemName: viewModel.isFavorite ? "heart.fill" : "heart")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 20)
@@ -87,7 +85,10 @@ struct CocktailDescription: View {
             }
             .offset(x: 100)
             VStack(alignment: .leading, spacing: 20) {
+                Text(viewModel.name)
+                    .font(.title3)
                 Text(viewModel.instructions)
+                    .foregroundColor(.gray)
                 Button {
                     showPopUp.toggle()
                 } label: {
