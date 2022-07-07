@@ -20,10 +20,10 @@ struct Cocktail: Identifiable, Codable {
     static func getCocktail() -> Cocktail {
         Cocktail(
             id: "001",
-            name: "Rum Cola",
+            name: "Cocktail loading...",
             category: "",
             glassName: "",
-            instructions: "Mix rum and cola",
+            instructions: "Cocktail data loading...",
             ingredients: [],
             imageData: nil
         )

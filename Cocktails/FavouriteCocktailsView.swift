@@ -39,7 +39,7 @@ struct FavoriteCocktailsView: View {
     // TODO: duplicate
     func getImage(data: Data?) -> Image {
         
-        let defaultImage = Image("rum_DEMO")
+        let defaultImage = Image("cocktail")
         
         guard let data = data else {
             return defaultImage
