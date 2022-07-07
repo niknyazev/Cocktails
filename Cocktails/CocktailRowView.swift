@@ -20,7 +20,7 @@ struct CocktailRowView: View {
                 .cornerRadius(25)
             Text(viewModel.name)
             Spacer()
-            Image(systemName: viewModel.isFavorite ? "bookmark.fill" : "bookmark")
+            Image(systemName: viewModel.isFavorite ? "heart.fill" : "heart")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 15)

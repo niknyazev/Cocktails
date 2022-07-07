@@ -29,7 +29,6 @@ struct ContentView: View {
                     Text("Favorite")
                 }
         }
-        // TODO: move color to class
         .accentColor(Color(colors.buttonColor))
         .environmentObject(colors)
         .onAppear() {
@@ -39,22 +38,20 @@ struct ContentView: View {
     
     private func setupBars() {
         
-        // TODO: move to class
-        
         let buttonColor = colors.buttonColor
-                
         let textColor: [NSAttributedString.Key : Any] = [.foregroundColor: UIColor.white]
-        
+
         let coloredAppearance = UINavigationBarAppearance()
         coloredAppearance.backgroundColor = buttonColor
         coloredAppearance.titleTextAttributes = textColor
         coloredAppearance.largeTitleTextAttributes = textColor
 
         let appearanceNavigationBar = UINavigationBar.appearance()
-            
+
         appearanceNavigationBar.standardAppearance = coloredAppearance
         appearanceNavigationBar.compactAppearance = coloredAppearance
-        appearanceNavigationBar.scrollEdgeAppearance = coloredAppearance        
+        appearanceNavigationBar.scrollEdgeAppearance = coloredAppearance
+        appearanceNavigationBar.tintColor = UIColor.white
     }
 }
 
