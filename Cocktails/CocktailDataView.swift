@@ -35,7 +35,7 @@ struct CocktailImage: View {
     
     var body: some View {
         ZStack {
-            getImage(data: image)
+            Image(cocktailImageData: image)
                 .resizable()
                 .frame(width: 200, height: 200, alignment: .center)
                 .cornerRadius(100)
@@ -46,20 +46,6 @@ struct CocktailImage: View {
                     .scaleEffect(1.5)
             }
         }
-    }
-    
-    func getImage(data: Data?) -> Image {
-        
-        let defaultImage = Image("cocktail")
-        
-        guard let data = data else {
-            return defaultImage
-        }
-        
-        guard let image = UIImage(data: data) else {
-            return defaultImage
-        }
-        return Image(uiImage: image)
     }
 }
 

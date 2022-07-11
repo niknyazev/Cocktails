@@ -19,7 +19,7 @@ struct FavoriteCocktailsView: View {
                         destination: CocktailDetailsView(viewModel: cocktail)
                     ) {
                         HStack {
-                            getImage(data: cocktail.image)
+                            Image(cocktailImageData: cocktail.image)
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 50)
@@ -35,22 +35,6 @@ struct FavoriteCocktailsView: View {
             .onAppear(perform: viewModel.updateFavorite)
         }
     }
-    
-    // TODO: duplicate
-    func getImage(data: Data?) -> Image {
-        
-        let defaultImage = Image("cocktail")
-        
-        guard let data = data else {
-            return defaultImage
-        }
-        
-        guard let image = UIImage(data: data) else {
-            return defaultImage
-        }
-        return Image(uiImage: image)
-    }
-    
 }
 
 struct FavoriteCocktails_Previews: PreviewProvider {
@@ -58,3 +42,4 @@ struct FavoriteCocktails_Previews: PreviewProvider {
         FavoriteCocktailsView()
     }
 }
+
